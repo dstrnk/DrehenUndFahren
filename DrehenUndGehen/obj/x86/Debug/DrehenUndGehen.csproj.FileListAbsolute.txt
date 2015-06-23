@@ -46,3 +46,11 @@ C:\Users\Shining\Documents\GitHub\DrehenUndFahren\DrehenUndGehen\obj\x86\Debug\D
 C:\Users\Shining\Documents\GitHub\DrehenUndFahren\DrehenUndGehen\obj\x86\Debug\DrehenUndGehen.csproj.GenerateResource.Cache
 C:\Users\Shining\Documents\GitHub\DrehenUndFahren\DrehenUndGehen\bin\Debug\DrehenUndGehen.exe
 C:\Users\Shining\Documents\GitHub\DrehenUndFahren\DrehenUndGehen\bin\Debug\DrehenUndGehen.pdb
+C:\Users\roman\Source\Repos\DrehenUndFahren\DrehenUndGehen\obj\x86\Debug\DrehenUndGehen.exe
+C:\Users\roman\Source\Repos\DrehenUndFahren\DrehenUndGehen\obj\x86\Debug\DrehenUndGehen.pdb
+C:\Users\roman\Source\Repos\DrehenUndFahren\DrehenUndGehen\bin\Debug\DrehenUndGehen.exe
+C:\Users\roman\Source\Repos\DrehenUndFahren\DrehenUndGehen\bin\Debug\DrehenUndGehen.pdb
+C:\Users\roman\Source\Repos\DrehenUndFahren\DrehenUndGehen\obj\x86\Debug\DrehenUndGehen.csprojResolveAssemblyReference.cache
+C:\Users\roman\Source\Repos\DrehenUndFahren\DrehenUndGehen\obj\x86\Debug\DrehenUndGehen.Form1.resources
+C:\Users\roman\Source\Repos\DrehenUndFahren\DrehenUndGehen\obj\x86\Debug\DrehenUndGehen.Properties.Resources.resources
+C:\Users\roman\Source\Repos\DrehenUndFahren\DrehenUndGehen\obj\x86\Debug\DrehenUndGehen.csproj.GenerateResource.Cache

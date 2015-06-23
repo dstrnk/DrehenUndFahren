@@ -77,6 +77,7 @@ namespace DrehenUndGehen
 				rend.drawMap(pixeloffset,push,row,column);
 				rend.drawExchangeCard(pixeloffset,push,row,column);
 			}
+            rend.drawPlayer();
 	
 			
 			
