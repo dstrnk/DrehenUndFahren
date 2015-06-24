@@ -23,7 +23,14 @@ namespace DrehenUndGehen
 		int column = -1;
 		int pixeloffset = 0;
 		Gamescreen screen;
-		
+
+        int pixelCounter;
+        Point direction;
+        int commandListPos = 0;
+        int clickx;
+        int clicky;
+        int commandCount;
+
 		public Form1()
 		{
 			InitializeComponent();
@@ -252,7 +259,18 @@ namespace DrehenUndGehen
 
 		private void Form1_MouseClick(object sender, MouseEventArgs e)
 		{
-
+            int widthP1 = 32;
+            int widthP2 = 32;
+            int heightP1 = 32;
+            int heightP2 = 32;
+            int xPosP1 = (first.player1.position.X * screen.MapPointSize) + screen.MapPosition.X + (screen.MapPointSize / 2) - (widthP1 / 2) + first.player1.xoffset;
+            int xPosP2 = (first.player2.position.X * screen.MapPointSize) + screen.MapPosition.X + (screen.MapPointSize / 2) - (widthP2 / 2) + first.player2.xoffset;
+            int yPosP1 = (first.player1.position.Y * screen.MapPointSize) + screen.MapPosition.Y + (heightP1 / 2) + first.player1.yoffset;
+            int yPosP2 = (first.player2.position.Y * screen.MapPointSize) + screen.MapPosition.Y + (heightP2 / 2) + first.player2.yoffset;
+            pictureBox1.Left = xPosP1;
+            pictureBox1.Top = yPosP1;
+            pictureBox1.Width = widthP1;
+            pictureBox1.Height = heightP1;
 			
 			/*
 			checkBox1.Checked = false;
@@ -277,14 +295,84 @@ namespace DrehenUndGehen
 				checkBox4.Checked = true;
 			}
 			*/
+            clickx = Convert.ToInt32((e.X - screen.MapPosition.X) / screen.MapPointSize);
+            clicky = Convert.ToInt32((e.Y - screen.MapPosition.Y) / screen.MapPointSize);
+            commandListPos = 0;
+            useCommand(0);
+            //moveRight(first.player1, new Point(x,y));
 		}
+
+        private void useCommand(int i)
+        {
+            List<String> commandList = first.findPath(first.player1.position, new Point(clickx, clicky));
+            commandCount = commandList.Count;
+            listBox1.DataSource = commandList;
+
+            pixelCounter = screen.MapPointSize;
+            if (commandList[i] == "up")
+            {
+                direction = new Point(0, -1);
+                first.player1.usedAnimation = first.player1.getAnimation("up");
+                playerTimer.Enabled = true;
+
+            }
+            else if (commandList[i] == "down")
+            {
+                direction = new Point(0, 1);
+                first.player1.usedAnimation = first.player1.getAnimation("down");
+                playerTimer.Enabled = true;
+            }
+            else if (commandList[i] == "left")
+            {
+                direction = new Point(-1, 0);
+                first.player1.usedAnimation = first.player1.getAnimation("left");
+                playerTimer.Enabled = true;
+            }
+            else if (commandList[i] == "right")
+            {
+                direction = new Point(1, 0);
+                first.player1.usedAnimation = first.player1.getAnimation("right");
+                playerTimer.Enabled = true;
+            }
+            else
+            {
+
+            }
+
+        }
 
 		private void Form1_Resize(object sender, EventArgs e)
 		{
 			screen = new Gamescreen(first, this);
-			Refresh();
-			 
 		}
+
+        private void playerTimer_Tick(object sender, EventArgs e)
+        {
+            if (first.player1.xoffset == pixelCounter || first.player1.yoffset == pixelCounter || first.player1.xoffset == -pixelCounter || first.player1.yoffset == -pixelCounter)
+            {
+                first.player1.xoffset = 0;
+                first.player1.yoffset = 0;        
+                playerTimer.Enabled = false;
+                commandListPos ++;
+                if (commandListPos < commandCount)
+                {  
+                    useCommand(commandListPos);
+                }
+                else if(commandListPos == commandCount)
+                    first.player1.position = new Point(clickx, clicky);
+                    
+            }
+            first.player1.xoffset += direction.X;
+            first.player1.yoffset += direction.Y;
+            pictureBox1.Left += direction.X;
+            pictureBox1.Top += direction.Y;
+
+            int summ = first.player1.xoffset + first.player1.yoffset;
+            int times = Convert.ToInt32(summ / screen.MapPointSize);
+
+            int calcPic = Convert.ToInt32((summ - (screen.MapPointSize * times)) / (screen.MapPointSize / 3));
+            pictureBox1.Image = first.player1.usedAnimation[Math.Abs(calcPic)];
+        }
 
 	
 
