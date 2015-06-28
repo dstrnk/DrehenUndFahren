@@ -44,6 +44,13 @@ namespace DrehenUndGehen
 			
         }
 
+        public void drawPlayer()
+        {
+            g.DrawImage(first.player1.shownBitmap, first.player1.positionPixel.X, first.player1.positionPixel.Y, first.player1.getPlayerSize(screen), first.player1.getPlayerSize(screen));
+
+           // g.DrawImage(first.player2.shownBitmap, first.player2.positionPixel.X, first.player2.positionPixel.Y, first.player2.getPlayerSize(screen), first.player2.getPlayerSize(screen));
+        }
+
         public void drawMap()
         {
 			

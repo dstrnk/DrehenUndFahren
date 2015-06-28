@@ -85,24 +85,15 @@ namespace DrehenUndGehen
 				rend.drawMap(pixeloffset,push,row,column);
 				rend.drawExchangeCard(pixeloffset,push,row,column);
 			}
-			
+            first.player1.setPositionPixel(screen);
+            first.player2.setPositionPixel(screen);
+            rend.drawPlayer();
 		}
 
 		private void Form1_Shown(object sender, EventArgs e)
 		{
-            first.player1.setPositionPixel(screen);
-            pbplayer1.Left = first.player1.positionPixel.X;
-            pbplayer1.Top = first.player1.positionPixel.Y;
-            pbplayer1.Width = first.player1.getPlayerSize(screen);
-            pbplayer1.Height = first.player1.getPlayerSize(screen);
-            pbplayer1.Image = first.player1.getAnimation("down")[0];
-
-            first.player2.setPositionPixel(screen);
-            pbplayer2.Left = first.player2.positionPixel.X;
-            pbplayer2.Top = first.player2.positionPixel.Y;
-            pbplayer2.Width = first.player2.getPlayerSize(screen);
-            pbplayer2.Height = first.player2.getPlayerSize(screen);
-            pbplayer2.Image = first.player2.getAnimation("down")[0];
+            
+            
 
 		}
 
@@ -367,13 +358,15 @@ namespace DrehenUndGehen
             first.player1.counterY += direction.Y;
 
             first.player1.setPositionPixel(first.player1.positionPixel.X + direction.X, first.player1.positionPixel.Y + direction.Y);
-
-            pbplayer1.Left += direction.X;
-            pbplayer1.Top += direction.Y;
+            label1.Text = first.player1.positionPixel.ToString();
+            //pbplayer1.Left += direction.X;
+            //pbplayer1.Top += direction.Y;
 
             int times = timerCounter / 50;
             int nr = timerCounter - times * 50;
-            pbplayer1.Image = first.player1.usedAnimation[nr / 25];
+            //pbplayer1.Image = first.player1.usedAnimation[nr / 25];
+            first.player1.shownBitmap = first.player1.usedAnimation[nr / 25];
+           // rend.drawPlayer();
         }
 
 	

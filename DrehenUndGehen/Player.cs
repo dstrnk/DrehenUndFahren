@@ -11,6 +11,8 @@ namespace DrehenUndGehen
         public Point positionPixel { get; set; } //in Pixel
         public Point positionMap { get; set; } //Mapposition
         private Bitmap[] down, up, right, left;
+        public Bitmap frontBitmap { get; set; }
+        public Bitmap shownBitmap { get; set; }
         public Bitmap[] usedAnimation { get; set; }
         public int counterX { get; set; }
         public int counterY { get; set; }
@@ -41,6 +43,8 @@ namespace DrehenUndGehen
                     up[i] = bild.Clone(new Rectangle(column * playerSizePng * 3 + i * playerSizePng, row * playerSizePng * 4 + playerSizePng * 3, playerSizePng, playerSizePng), System.Drawing.Imaging.PixelFormat.DontCare);
 
                 }
+                frontBitmap = down[1];
+                shownBitmap = frontBitmap;
                 down = new Bitmap[] { down[0], down[2]};
                 left = new Bitmap[] { left[0], left[2] };
                 right = new Bitmap[] { right[0], right[2] };
@@ -83,7 +87,7 @@ namespace DrehenUndGehen
 
         public Bitmap getFrontBitmap()
         {
-            return down[1];
+            return frontBitmap;
         }
 
         public int getPlayerSize(Gamescreen screen)
