@@ -239,9 +239,6 @@ namespace DrehenUndGehen
 			Proplist.Add(Hook);
 			Proplist.Add(Diamant);
 			Proplist.Add(Geld);
-
-			
-
 		}
 
 	}

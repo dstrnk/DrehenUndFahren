@@ -44,21 +44,6 @@ namespace DrehenUndGehen
 			
         }
 
-        public void drawPlayer()
-        {
-           /* int widthP1 = 32;
-            int widthP2 = 32;
-            int heightP1 = 32;
-            int heightP2 = 32;
-            int xPosP1 = (first.player1.position.X * screen.MapPointSize) + screen.MapPosition.X + (screen.MapPointSize / 2) - (widthP1 / 2) + first.player1.offset.X;
-            int xPosP2 = (first.player2.position.X * screen.MapPointSize) + screen.MapPosition.X + (screen.MapPointSize / 2) - (widthP2 / 2) + first.player2.offset.X;
-            int yPosP1 = (first.player1.position.Y * screen.MapPointSize) + screen.MapPosition.Y + (heightP1 / 2) + first.player1.offset.Y;
-            int yPosP2 = (first.player2.position.Y * screen.MapPointSize) + screen.MapPosition.Y + (heightP2 / 2) + first.player2.offset.Y;
-            
-            g.DrawImage(first.player1.getFrontBitmap(), new Rectangle(xPosP1, yPosP1, 32, 32));
-            g.DrawImage(first.player2.getFrontBitmap(), new Rectangle(xPosP2, yPosP2, 32, 32));*/
-        }
-
         public void drawMap()
         {
 			

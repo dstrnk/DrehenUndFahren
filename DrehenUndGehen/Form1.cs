@@ -30,6 +30,7 @@ namespace DrehenUndGehen
         int clickx;
         int clicky;
         int commandCount;
+        int timerCounter;
 
 		public Form1()
 		{
@@ -84,17 +85,24 @@ namespace DrehenUndGehen
 				rend.drawMap(pixeloffset,push,row,column);
 				rend.drawExchangeCard(pixeloffset,push,row,column);
 			}
-            rend.drawPlayer();
-	
-			
-			
-		
 			
 		}
 
 		private void Form1_Shown(object sender, EventArgs e)
 		{
+            first.player1.setPositionPixel(screen);
+            pbplayer1.Left = first.player1.positionPixel.X;
+            pbplayer1.Top = first.player1.positionPixel.Y;
+            pbplayer1.Width = first.player1.getPlayerSize(screen);
+            pbplayer1.Height = first.player1.getPlayerSize(screen);
+            pbplayer1.Image = first.player1.getAnimation("down")[0];
 
+            first.player2.setPositionPixel(screen);
+            pbplayer2.Left = first.player2.positionPixel.X;
+            pbplayer2.Top = first.player2.positionPixel.Y;
+            pbplayer2.Width = first.player2.getPlayerSize(screen);
+            pbplayer2.Height = first.player2.getPlayerSize(screen);
+            pbplayer2.Image = first.player2.getAnimation("down")[0];
 
 		}
 
@@ -259,18 +267,7 @@ namespace DrehenUndGehen
 
 		private void Form1_MouseClick(object sender, MouseEventArgs e)
 		{
-            int widthP1 = 32;
-            int widthP2 = 32;
-            int heightP1 = 32;
-            int heightP2 = 32;
-            int xPosP1 = (first.player1.position.X * screen.MapPointSize) + screen.MapPosition.X + (screen.MapPointSize / 2) - (widthP1 / 2) + first.player1.xoffset;
-            int xPosP2 = (first.player2.position.X * screen.MapPointSize) + screen.MapPosition.X + (screen.MapPointSize / 2) - (widthP2 / 2) + first.player2.xoffset;
-            int yPosP1 = (first.player1.position.Y * screen.MapPointSize) + screen.MapPosition.Y + (heightP1 / 2) + first.player1.yoffset;
-            int yPosP2 = (first.player2.position.Y * screen.MapPointSize) + screen.MapPosition.Y + (heightP2 / 2) + first.player2.yoffset;
-            pictureBox1.Left = xPosP1;
-            pictureBox1.Top = yPosP1;
-            pictureBox1.Width = widthP1;
-            pictureBox1.Height = heightP1;
+            
 			
 			/*
 			checkBox1.Checked = false;
@@ -304,39 +301,41 @@ namespace DrehenUndGehen
 
         private void useCommand(int i)
         {
-            List<String> commandList = first.findPath(first.player1.position, new Point(clickx, clicky));
+            List<String> commandList = first.findPath(first.player1.getMapPosition(screen), new Point(clickx, clicky));
             commandCount = commandList.Count;
-            listBox1.DataSource = commandList;
 
             pixelCounter = screen.MapPointSize;
-            if (commandList[i] == "up")
+            if (commandList.Any())
             {
-                direction = new Point(0, -1);
-                first.player1.usedAnimation = first.player1.getAnimation("up");
-                playerTimer.Enabled = true;
+                if (commandList[i] == "up")
+                {
+                    direction = new Point(0, -1);
+                    first.player1.usedAnimation = first.player1.getAnimation("up");
+                    playerTimer.Enabled = true;
 
-            }
-            else if (commandList[i] == "down")
-            {
-                direction = new Point(0, 1);
-                first.player1.usedAnimation = first.player1.getAnimation("down");
-                playerTimer.Enabled = true;
-            }
-            else if (commandList[i] == "left")
-            {
-                direction = new Point(-1, 0);
-                first.player1.usedAnimation = first.player1.getAnimation("left");
-                playerTimer.Enabled = true;
-            }
-            else if (commandList[i] == "right")
-            {
-                direction = new Point(1, 0);
-                first.player1.usedAnimation = first.player1.getAnimation("right");
-                playerTimer.Enabled = true;
-            }
-            else
-            {
+                }
+                else if (commandList[i] == "down")
+                {
+                    direction = new Point(0, 1);
+                    first.player1.usedAnimation = first.player1.getAnimation("down");
+                    playerTimer.Enabled = true;
+                }
+                else if (commandList[i] == "left")
+                {
+                    direction = new Point(-1, 0);
+                    first.player1.usedAnimation = first.player1.getAnimation("left");
+                    playerTimer.Enabled = true;
+                }
+                else if (commandList[i] == "right")
+                {
+                    direction = new Point(1, 0);
+                    first.player1.usedAnimation = first.player1.getAnimation("right");
+                    playerTimer.Enabled = true;
+                }
+                else
+                {
 
+                }
             }
 
         }
@@ -348,30 +347,33 @@ namespace DrehenUndGehen
 
         private void playerTimer_Tick(object sender, EventArgs e)
         {
-            if (first.player1.xoffset == pixelCounter || first.player1.yoffset == pixelCounter || first.player1.xoffset == -pixelCounter || first.player1.yoffset == -pixelCounter)
+            timerCounter++;
+            if (Math.Abs(first.player1.counterX) == pixelCounter || Math.Abs(first.player1.counterY) == pixelCounter)
             {
-                first.player1.xoffset = 0;
-                first.player1.yoffset = 0;        
+                first.player1.counterX = 0;
+                first.player1.counterY = 0;        
                 playerTimer.Enabled = false;
                 commandListPos ++;
+                useCommand(0);
                 if (commandListPos < commandCount)
                 {  
-                    useCommand(commandListPos);
+                    
                 }
                 else if(commandListPos == commandCount)
-                    first.player1.position = new Point(clickx, clicky);
+                    first.player1.getMapPosition(screen);
                     
             }
-            first.player1.xoffset += direction.X;
-            first.player1.yoffset += direction.Y;
-            pictureBox1.Left += direction.X;
-            pictureBox1.Top += direction.Y;
+            first.player1.counterX += direction.X;
+            first.player1.counterY += direction.Y;
 
-            int summ = first.player1.xoffset + first.player1.yoffset;
-            int times = Convert.ToInt32(summ / screen.MapPointSize);
+            first.player1.setPositionPixel(first.player1.positionPixel.X + direction.X, first.player1.positionPixel.Y + direction.Y);
 
-            int calcPic = Convert.ToInt32((summ - (screen.MapPointSize * times)) / (screen.MapPointSize / 3));
-            pictureBox1.Image = first.player1.usedAnimation[Math.Abs(calcPic)];
+            pbplayer1.Left += direction.X;
+            pbplayer1.Top += direction.Y;
+
+            int times = timerCounter / 50;
+            int nr = timerCounter - times * 50;
+            pbplayer1.Image = first.player1.usedAnimation[nr / 25];
         }
 
 	

@@ -62,12 +62,8 @@ namespace DrehenUndGehen
 			this.usedProps = new List<Bitmap>();
 			//Ein Mappoint zum Verschieben wird beim ersten mal zufällig erstellt
 			ran = new Random();
-            player1 = new Player(0, new Point(0,0));
+            player1 = new Player(4, new Point(0,0));
             player2 = new Player(1, new Point(Mapsize-1,Mapsize-1));
-            player1.xoffset = 0;
-            player1.yoffset = 0;
-            player2.xoffset = 0;
-            player2.yoffset = 0;
 		}
 
         /*

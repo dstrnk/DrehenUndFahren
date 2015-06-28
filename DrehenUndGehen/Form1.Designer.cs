@@ -31,9 +31,10 @@
             this.components = new System.ComponentModel.Container();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.playerTimer = new System.Windows.Forms.Timer(this.components);
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.pbplayer1 = new System.Windows.Forms.PictureBox();
+            this.pbplayer2 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pbplayer1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbplayer2)).BeginInit();
             this.SuspendLayout();
             // 
             // timer1
@@ -46,22 +47,23 @@
             this.playerTimer.Interval = 25;
             this.playerTimer.Tick += new System.EventHandler(this.playerTimer_Tick);
             // 
-            // listBox1
+            // pbplayer1
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(230, 365);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(189, 134);
-            this.listBox1.TabIndex = 0;
+            this.pbplayer1.BackColor = System.Drawing.Color.Transparent;
+            this.pbplayer1.Location = new System.Drawing.Point(317, 97);
+            this.pbplayer1.Name = "pbplayer1";
+            this.pbplayer1.Size = new System.Drawing.Size(100, 50);
+            this.pbplayer1.TabIndex = 1;
+            this.pbplayer1.TabStop = false;
             // 
-            // pictureBox1
+            // pbplayer2
             // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.Location = new System.Drawing.Point(317, 97);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(100, 50);
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
+            this.pbplayer2.BackColor = System.Drawing.Color.Transparent;
+            this.pbplayer2.Location = new System.Drawing.Point(585, 97);
+            this.pbplayer2.Name = "pbplayer2";
+            this.pbplayer2.Size = new System.Drawing.Size(100, 50);
+            this.pbplayer2.TabIndex = 2;
+            this.pbplayer2.TabStop = false;
             // 
             // Form1
             // 
@@ -70,8 +72,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1379, 904);
-            this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.pbplayer2);
+            this.Controls.Add(this.pbplayer1);
             this.DoubleBuffered = true;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -85,7 +87,8 @@
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseMove);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseUp);
             this.Resize += new System.EventHandler(this.Form1_Resize);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbplayer1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbplayer2)).EndInit();
             this.ResumeLayout(false);
 
 		}
@@ -94,8 +97,8 @@
 
 		private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Timer playerTimer;
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pbplayer1;
+        private System.Windows.Forms.PictureBox pbplayer2;
 
 
 
