@@ -9,7 +9,9 @@ namespace DrehenUndGehen
     public class Player
     {
         public Point position { get; set; }
-
+        public int xoffset { get; set; }
+        public int yoffset { get; set; }
+        public Bitmap[] usedAnimation { get; set; }
         private Bitmap[] down, up, right, left;
 
         public Player(int id, Point startPosition)
