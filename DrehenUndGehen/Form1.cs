@@ -336,6 +336,9 @@ namespace DrehenUndGehen
 		private void Form1_Resize(object sender, EventArgs e)
 		{
 			screen = new Gamescreen(first, this);
+            first.player1.setPositionPixel(screen);
+            first.player2.setPositionPixel(screen);
+            Refresh();
 		}
 
         private void playerTimer_Tick(object sender, EventArgs e)
