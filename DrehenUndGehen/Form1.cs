@@ -45,7 +45,9 @@ namespace DrehenUndGehen
             this.AllowDrop = true;											//für Drag and Drop bin mir aber nicht sicher ob es Programmintern überhaupt gebraucht wird
 			p = new Point(screen.ExchangeCard.X, screen.ExchangeCard.Y);
 			WindowState = FormWindowState.Maximized;
-			
+
+            first.player1.setPositionPixel(screen);
+            first.player2.setPositionPixel(screen);
 			
 		}
 
@@ -366,7 +368,8 @@ namespace DrehenUndGehen
             int nr = timerCounter - times * 50;
             //pbplayer1.Image = first.player1.usedAnimation[nr / 25];
             first.player1.shownBitmap = first.player1.usedAnimation[nr / 25];
-           // rend.drawPlayer();
+            //rend.drawPlayer();
+            //Refresh();
         }
 
 	
