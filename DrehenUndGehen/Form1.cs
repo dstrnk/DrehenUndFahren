@@ -46,14 +46,14 @@ namespace DrehenUndGehen
 			p = new Point(screen.ExchangeCard.X, screen.ExchangeCard.Y);
 			WindowState = FormWindowState.Maximized;
 
-            first.player1.setPositionPixel(screen);
-            first.player2.setPositionPixel(screen);
+           
 			
 		}
 
 		private void Form1_Load(object sender, EventArgs e)
 		{
-
+            first.player1.setPositionPixel(screen);
+            first.player2.setPositionPixel(screen);
 		}
 
 		public void Form1_Paint(object sender, PaintEventArgs e)
@@ -87,8 +87,7 @@ namespace DrehenUndGehen
 				rend.drawMap(pixeloffset,push,row,column);
 				rend.drawExchangeCard(pixeloffset,push,row,column);
 			}
-            first.player1.setPositionPixel(screen);
-            first.player2.setPositionPixel(screen);
+            
             rend.drawPlayer();
 		}
 
@@ -296,6 +295,7 @@ namespace DrehenUndGehen
         {
             List<String> commandList = first.findPath(first.player1.getMapPosition(screen), new Point(clickx, clicky));
             commandCount = commandList.Count;
+            
 
             pixelCounter = screen.MapPointSize;
             if (commandList.Any())
@@ -345,14 +345,11 @@ namespace DrehenUndGehen
             {
                 first.player1.counterX = 0;
                 first.player1.counterY = 0;        
-                playerTimer.Enabled = false;
+                playerTimer.Stop();
                 commandListPos ++;
                 useCommand(0);
-                if (commandListPos < commandCount)
-                {  
-                    
-                }
-                else if(commandListPos == commandCount)
+            
+                if(commandListPos == commandCount)
                     first.player1.getMapPosition(screen);
                     
             }
@@ -369,7 +366,10 @@ namespace DrehenUndGehen
             //pbplayer1.Image = first.player1.usedAnimation[nr / 25];
             first.player1.shownBitmap = first.player1.usedAnimation[nr / 25];
             //rend.drawPlayer();
-            //Refresh();
+
+            Invalidate(new Rectangle(first.player1.positionPixel.X + direction.X, first.player1.positionPixel.Y,screen.MapPointSize,screen.MapPointSize));
+           
+            
         }
 
 	
