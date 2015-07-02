@@ -32,12 +32,10 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.playerTimer = new System.Windows.Forms.Timer(this.components);
             this.label1 = new System.Windows.Forms.Label();
-            this.listBox1 = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // timer1
             // 
-            this.timer1.Interval = 50;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // playerTimer
@@ -48,19 +46,11 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(100, 13);
+            this.label1.Location = new System.Drawing.Point(1260, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 13);
             this.label1.TabIndex = 3;
             this.label1.Text = "label1";
-            // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(918, 31);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(233, 420);
-            this.listBox1.TabIndex = 4;
             // 
             // Form1
             // 
@@ -69,7 +59,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1379, 904);
-            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.label1);
             this.DoubleBuffered = true;
             this.Name = "Form1";
@@ -94,7 +83,6 @@
 		private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Timer playerTimer;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ListBox listBox1;
 
 
 

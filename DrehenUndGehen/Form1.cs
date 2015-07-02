@@ -18,6 +18,8 @@ namespace DrehenUndGehen
 		Renderer rend;
 		bool moving, push, mouseover;
 		
+        bool pathMoving; //gibt an ob grad geschoben wird
+
 		Point p;
 		int row = -1; 
 		int column = -1;
@@ -49,7 +51,7 @@ namespace DrehenUndGehen
 			p = new Point(screen.ExchangeCard.X, screen.ExchangeCard.Y);
 			WindowState = FormWindowState.Maximized;
 
-           
+            pathMoving = false;
 			
 		}
 
@@ -63,12 +65,14 @@ namespace DrehenUndGehen
             int startplayer = 1;
             if (startplayer == 1)
             {
+                label1.Text = "Spieler 1 schiebt";
                 first.player1.pushAviable = true;
                 activePlayer = first.player1;
 
             }
             else
             {
+                label1.Text = "Spieler 2 schiebt";
                 first.player2.pushAviable = true;
                 activePlayer = first.player2;
             }
@@ -119,20 +123,22 @@ namespace DrehenUndGehen
 
 		public void Form1_MouseDown(object sender, MouseEventArgs e)
 		{
-			if (screen.Button.Contains(e.Location))
-			{
-				first.switchPosition(first.exchangeCard);
-				mouseover = true;
-				Invalidate(screen.Button);
-			}
-			
-			if(e.Button==MouseButtons.Left&&screen.ExchangeCard.Contains(e.Location))         // Überprüfung ob sich die Maus auf der exchangeCard Befindet
-			{
-				p.X = e.X - screen.MapPointSize / 2;                                                                                         // Falls ja wird die Maus in die Mitte der exchangeCard gesetzt
-				p.Y = e.Y - screen.MapPointSize / 2;                                                                                     // und moving wird auf true gesetzt
-				moving = true;
-			}
-					
+            if (!activePlayer.playerMoving && activePlayer.pushAviable)
+            {
+                if (screen.Button.Contains(e.Location))
+                {
+                    first.switchPosition(first.exchangeCard);
+                    mouseover = true;
+                    Invalidate(screen.Button);
+                }
+
+                if (e.Button == MouseButtons.Left && screen.ExchangeCard.Contains(e.Location))         // Überprüfung ob sich die Maus auf der exchangeCard Befindet
+                {
+                    p.X = e.X - screen.MapPointSize / 2;                                                                                         // Falls ja wird die Maus in die Mitte der exchangeCard gesetzt
+                    p.Y = e.Y - screen.MapPointSize / 2;                                                                                     // und moving wird auf true gesetzt
+                    moving = true;
+                }
+            }		
 		}
 
 		public void Form1_MouseMove(object sender, MouseEventArgs e)
@@ -148,85 +154,100 @@ namespace DrehenUndGehen
 		}
 
 		private void Form1_MouseUp(object sender, MouseEventArgs e)
-		{	/*
-             * Hier wird überprüft ob die exchangeCard auf der richtigen Position abgelegt wurde(Rote Pfeile)
-             * falls ja wird die Reihe/Spalte entsprechend verschoben
-             */ 
-            if (moving)
+		{
+            if (!activePlayer.playerMoving && !pathMoving)
             {
-                for (int i = 0; i < first.Mapsize; i++)
+                /*
+                 * Hier wird überprüft ob die exchangeCard auf der richtigen Position abgelegt wurde(Rote Pfeile)
+                 * falls ja wird die Reihe/Spalte entsprechend verschoben
+                 */
+                if (moving)
                 {
-                    if (i % 2 != 0 && activePlayer.pushAviable && !activePlayer.playerMoving)
+                    for (int i = 0; i < first.Mapsize; i++)
                     {
-						if (new RectangleF(screen.MapPosition.X - screen.MapPointSize, screen.MapPosition.Y + screen.MapPointSize * i, screen.MapPointSize, screen.MapPointSize).Contains(e.Location))
+                        if (i % 2 != 0 && activePlayer.pushAviable)
                         {
-							push = true;
-							row = i;
-							timer1.Enabled = true;							
-							timer1.Interval = 50;
-							first.files.player.Play();
-							//timer1.Start();
-							//first.PushRow(i, first.exchangeCard);
-                            nextStepPlayer();				   
-	 
-                        }
-						else if (new RectangleF(screen.MapPosition.X + screen.MapPointSize * i, screen.MapPosition.Y - screen.MapPointSize, screen.MapPointSize, screen.MapPointSize).Contains(e.Location))
-                        {
-							push = true;
-							column = i;
-							timer1.Enabled = true;
-							timer1.Interval = 50;
-							first.files.player.Play();
+                            pathMoving = true;
 
-                            //first.PushColumn(i, first.exchangeCard);
-                            //Refresh();
-                            nextStepPlayer();
-                        }
-						else if (new RectangleF(screen.MapPosition.X + screen.MapPointSize * first.Mapsize, screen.MapPosition.Y + screen.MapPointSize * i, screen.MapPointSize, screen.MapPointSize).Contains(e.Location))
-                        {
-							push = false;
-							row = i;
-							timer1.Enabled = true;
-							timer1.Interval = 50;
-							first.files.player.Play();
-                            //first.PullRow(i, first.exchangeCard);
-                            //Refresh();
-                            nextStepPlayer();
-                        }
-						else if (new RectangleF(screen.MapPosition.X + screen.MapPointSize * i, screen.MapPosition.Y + screen.MapPointSize * first.Mapsize, screen.MapPointSize, screen.MapPointSize).Contains(e.Location))
-                        {
-							push = false;
-							column = i;
-							timer1.Enabled = true;
-							timer1.Interval = 50;
-							first.files.player.Play();
-                            //first.PullColumn(i, first.exchangeCard);
-                            //Refresh();
-                            nextStepPlayer();
-                        }
+                            if (new RectangleF(screen.MapPosition.X - screen.MapPointSize, screen.MapPosition.Y + screen.MapPointSize * i, screen.MapPointSize, screen.MapPointSize).Contains(e.Location))
+                            {
+                                push = true;
+                                row = i;
+                                timer1.Enabled = true;
+                                timer1.Interval = 50;
+                                first.files.player.Play();
+                                //timer1.Start();
+                                //first.PushRow(i, first.exchangeCard);
+                                nextStepPlayer();
 
+                            }
+                            else if (new RectangleF(screen.MapPosition.X + screen.MapPointSize * i, screen.MapPosition.Y - screen.MapPointSize, screen.MapPointSize, screen.MapPointSize).Contains(e.Location))
+                            {
+                                push = true;
+                                column = i;
+                                timer1.Enabled = true;
+                                timer1.Interval = 50;
+                                first.files.player.Play();
+
+                                //first.PushColumn(i, first.exchangeCard);
+                                //Refresh();
+                                nextStepPlayer();
+                            }
+                            else if (new RectangleF(screen.MapPosition.X + screen.MapPointSize * first.Mapsize, screen.MapPosition.Y + screen.MapPointSize * i, screen.MapPointSize, screen.MapPointSize).Contains(e.Location))
+                            {
+                                push = false;
+                                row = i;
+                                timer1.Enabled = true;
+                                timer1.Interval = 50;
+                                first.files.player.Play();
+                                //first.PullRow(i, first.exchangeCard);
+                                //Refresh();
+                                nextStepPlayer();
+                            }
+                            else if (new RectangleF(screen.MapPosition.X + screen.MapPointSize * i, screen.MapPosition.Y + screen.MapPointSize * first.Mapsize, screen.MapPointSize, screen.MapPointSize).Contains(e.Location))
+                            {
+                                push = false;
+                                column = i;
+                                timer1.Enabled = true;
+                                timer1.Interval = 50;
+                                first.files.player.Play();
+                                //first.PullColumn(i, first.exchangeCard);
+                                //Refresh();
+                                nextStepPlayer();
+                            }
+
+                        }
                     }
                 }
-            }
-            /*
-             * Hier wird moving auf false gesetzt weil wir die Maus loslassen denke das ist vernünftig xD
-             */ 
-			if (e.Button == MouseButtons.Left)
-			{
-				moving = false;
-				p.X = screen.ExchangeCard.X;
-				p.Y = screen.ExchangeCard.Y;
-			
-			}
+                /*
+                 * Hier wird moving auf false gesetzt weil wir die Maus loslassen denke das ist vernünftig xD
+                 */
+                if (e.Button == MouseButtons.Left)
+                {
+                    moving = false;
+                    p.X = screen.ExchangeCard.X;
+                    p.Y = screen.ExchangeCard.Y;
 
-			mouseover = false;
-			Refresh();
+                }
+
+                mouseover = false;
+                Refresh();
+            }
 		}
 
         private void nextStepPlayer() 
         {
             activePlayer.moveAviable = true;
             activePlayer.pushAviable = false;
+
+            if (activePlayer.playerId == 1)
+            {
+                label1.Text = "Spieler 1 geht";
+            }
+            else
+            {
+                label1.Text = "Spieler 2 geht";
+            }
         }
 
         private void Form1_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -251,6 +272,7 @@ namespace DrehenUndGehen
 					column = -1;
 					timer1.Stop();
 					pixeloffset = 0;
+                    pathMoving = false;
 				}
 				else if(push && row ==- 1)
 				{
@@ -259,6 +281,7 @@ namespace DrehenUndGehen
 					column = -1;
 					timer1.Stop();
 					pixeloffset = 0;
+                    pathMoving = false;
 				}
 				else if (!push && row != -1)
 				{
@@ -267,6 +290,7 @@ namespace DrehenUndGehen
 					column = -1;
 					timer1.Stop();
 					pixeloffset = 0;
+                    pathMoving = false;
 				}
 				else if (!push && row ==-1)
 				{
@@ -275,6 +299,7 @@ namespace DrehenUndGehen
 					column = -1;
 					timer1.Stop();
 					pixeloffset = 0;
+                    pathMoving = false;
 				}
 			}
 			
@@ -285,13 +310,12 @@ namespace DrehenUndGehen
 		{
             clickx = Convert.ToInt32((e.X - screen.MapPosition.X) / screen.MapPointSize);
             clicky = Convert.ToInt32((e.Y - screen.MapPosition.Y) / screen.MapPointSize);
-            if (!activePlayer.playerMoving && activePlayer.moveAviable && first.findPath(activePlayer.getMapPosition(screen), new Point(clickx, clicky)).First() != "NO WAY!")
+            if (!pathMoving && !activePlayer.playerMoving && activePlayer.moveAviable && first.findPath(activePlayer.getMapPosition(screen), new Point(clickx, clicky)).First() != "NO WAY!")
             {
                 activePlayer.moveAviable = false;
                 activePlayer.playerMoving = true;
 
                 commandList = first.findPath(activePlayer.getMapPosition(screen), new Point(clickx, clicky));
-                listBox1.DataSource = commandList;
                 commandCount = commandList.Count;
                 
                 commandListPos = 0;
@@ -348,10 +372,7 @@ namespace DrehenUndGehen
         private void playerTimer_Tick(object sender, EventArgs e)
         {
             timerCounter++;
-
-            label1.Text = commandListPos.ToString();
-
-
+            
             if (Math.Abs(activePlayer.counterX) == pixelCounter || Math.Abs(activePlayer.counterY) == pixelCounter)
             {
                 playerTimer.Enabled = false;
@@ -366,11 +387,17 @@ namespace DrehenUndGehen
                 {
                     activePlayer.getMapPosition(screen);
                     activePlayer.playerMoving = false;  //hört auf zu Laufen
-                    
+
                     if (activePlayer.playerId == 1)
+                    {
                         activePlayer = first.player2;
+                        label1.Text = "Spieler 2 schiebt";
+                    }
                     else
+                    {
                         activePlayer = first.player1;
+                        label1.Text = "Spieler 1 schiebt";
+                    }
 
                     activePlayer.pushAviable = true;                
                 }           
