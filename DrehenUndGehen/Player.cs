@@ -8,18 +8,31 @@ namespace DrehenUndGehen
 {
     public class Player
     {
-        public Point positionPixel { get; set; } //in Pixel
-        public Point positionMap { get; set; } //Mapposition
-        private Bitmap[] down, up, right, left;
-        public Bitmap frontBitmap { get; set; }
-        public Bitmap shownBitmap { get; set; }
-        public Bitmap[] usedAnimation { get; set; }
-        public int counterX { get; set; }
+        public int playerId { get; set; }
+        
+        public Point positionPixel { get; set; }    //in Pixel
+        public Point positionMap { get; set; }      //Mapposition
+
+        private Bitmap[] down, up, right, left;     //alle Bilder
+        public Bitmap frontBitmap { get; set; }     //Vorderansicht vom Charakter
+        public Bitmap shownBitmap { get; set; }     //derzeitig geladenen Bitmap
+        public Bitmap[] usedAnimation { get; set; } //Array für die Richtung in die der Charakter läuft
+
+        public int counterX { get; set; }   //Zähler wieviele Pixel der Spieler schon gelaufen ist
         public int counterY { get; set; }
+
+        public bool pushAviable { get; set; }   //darf der Spieler schieben?
+        public bool moveAviable { get; set; }   //darf dre Spieler gehen?
+        public bool playerMoving { get; set; }  //Bewegt sich der Spieler?
+
 
         public Player(int id, Point startPosition)
         {
             int playerSizePng = 32;
+
+            playerMoving = false;
+            pushAviable = false;
+            moveAviable = false;
 
             positionMap = startPosition;
 
@@ -55,7 +68,7 @@ namespace DrehenUndGehen
         public void setPositionPixel(Gamescreen screen)
         {
             int xPosMap = (positionMap.X * screen.MapPointSize) + screen.MapPosition.X + (screen.MapPointSize / 2) - (this.getPlayerSize(screen) / 2);
-            int yPosMap = (positionMap.Y * screen.MapPointSize) + screen.MapPosition.Y + (screen.MapPointSize / 2) - (this.getPlayerSize(screen) / 2);
+            int yPosMap = (positionMap.Y * screen.MapPointSize) + screen.MapPosition.Y + (screen.MapPointSize / 2) - (this.getPlayerSize(screen) / 2 + this.getPlayerSize(screen) / 4);
             positionPixel = new Point(xPosMap, yPosMap);
         }
 

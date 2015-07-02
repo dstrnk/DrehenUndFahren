@@ -16,7 +16,7 @@ namespace DrehenUndGehen
 		Graphics g;
 		Map first;
 		Renderer rend;
-		bool moving, push,mouseover;
+		bool moving, push, mouseover;
 		
 		Point p;
 		int row = -1; 
@@ -31,6 +31,9 @@ namespace DrehenUndGehen
         int clicky;
         int commandCount;
         int timerCounter;
+        List<String> commandList;
+
+        Player activePlayer;
 
 		public Form1()
 		{
@@ -53,7 +56,22 @@ namespace DrehenUndGehen
 		private void Form1_Load(object sender, EventArgs e)
 		{
             first.player1.setPositionPixel(screen);
+            first.player1.playerId = 1;
             first.player2.setPositionPixel(screen);
+            first.player2.playerId = 2;
+
+            int startplayer = 1;
+            if (startplayer == 1)
+            {
+                first.player1.pushAviable = true;
+                activePlayer = first.player1;
+
+            }
+            else
+            {
+                first.player2.pushAviable = true;
+                activePlayer = first.player2;
+            }
 		}
 
 		public void Form1_Paint(object sender, PaintEventArgs e)
@@ -126,9 +144,7 @@ namespace DrehenUndGehen
 				p.Y = e.Y - screen.MapPointSize / 2;                                                                                         // Drag and Drop halt....
 				Refresh();
 			}
-			
-			
-								
+						
 		}
 
 		private void Form1_MouseUp(object sender, MouseEventArgs e)
@@ -140,7 +156,7 @@ namespace DrehenUndGehen
             {
                 for (int i = 0; i < first.Mapsize; i++)
                 {
-                    if (i % 2 != 0)
+                    if (i % 2 != 0 && activePlayer.pushAviable && !activePlayer.playerMoving)
                     {
 						if (new RectangleF(screen.MapPosition.X - screen.MapPointSize, screen.MapPosition.Y + screen.MapPointSize * i, screen.MapPointSize, screen.MapPointSize).Contains(e.Location))
                         {
@@ -151,7 +167,7 @@ namespace DrehenUndGehen
 							first.files.player.Play();
 							//timer1.Start();
 							//first.PushRow(i, first.exchangeCard);
-						 					   
+                            nextStepPlayer();				   
 	 
                         }
 						else if (new RectangleF(screen.MapPosition.X + screen.MapPointSize * i, screen.MapPosition.Y - screen.MapPointSize, screen.MapPointSize, screen.MapPointSize).Contains(e.Location))
@@ -164,6 +180,7 @@ namespace DrehenUndGehen
 
                             //first.PushColumn(i, first.exchangeCard);
                             //Refresh();
+                            nextStepPlayer();
                         }
 						else if (new RectangleF(screen.MapPosition.X + screen.MapPointSize * first.Mapsize, screen.MapPosition.Y + screen.MapPointSize * i, screen.MapPointSize, screen.MapPointSize).Contains(e.Location))
                         {
@@ -174,6 +191,7 @@ namespace DrehenUndGehen
 							first.files.player.Play();
                             //first.PullRow(i, first.exchangeCard);
                             //Refresh();
+                            nextStepPlayer();
                         }
 						else if (new RectangleF(screen.MapPosition.X + screen.MapPointSize * i, screen.MapPosition.Y + screen.MapPointSize * first.Mapsize, screen.MapPointSize, screen.MapPointSize).Contains(e.Location))
                         {
@@ -184,6 +202,7 @@ namespace DrehenUndGehen
 							first.files.player.Play();
                             //first.PullColumn(i, first.exchangeCard);
                             //Refresh();
+                            nextStepPlayer();
                         }
 
                     }
@@ -204,6 +223,11 @@ namespace DrehenUndGehen
 			Refresh();
 		}
 
+        private void nextStepPlayer() 
+        {
+            activePlayer.moveAviable = true;
+            activePlayer.pushAviable = false;
+        }
 
         private void Form1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
@@ -259,70 +283,50 @@ namespace DrehenUndGehen
 
 		private void Form1_MouseClick(object sender, MouseEventArgs e)
 		{
-            
-			
-			/*
-			checkBox1.Checked = false;
-			checkBox2.Checked = false;
-			checkBox3.Checked = false;
-			checkBox4.Checked = false;
-
-			if (first.Board[Convert.ToInt32((e.X - first.MappositionX) / first.MapPointSize), Convert.ToInt32((e.Y - first.MappositionY) / first.MapPointSize)].top == true)
-			{
-				checkBox1.Checked = true;
-			}
-			if (first.Board[Convert.ToInt32((e.X - first.MappositionX) / first.MapPointSize), Convert.ToInt32((e.Y - first.MappositionY) / first.MapPointSize)].right == true)
-			{
-				checkBox2.Checked = true;
-			}
-			if (first.Board[Convert.ToInt32((e.X - first.MappositionX) / first.MapPointSize), Convert.ToInt32((e.Y - first.MappositionY) / first.MapPointSize)].bottom == true)
-			{
-				checkBox3.Checked = true;
-			}
-			if (first.Board[Convert.ToInt32((e.X - first.MappositionX) / first.MapPointSize), Convert.ToInt32((e.Y - first.MappositionY) / first.MapPointSize)].left == true)
-			{
-				checkBox4.Checked = true;
-			}
-			*/
             clickx = Convert.ToInt32((e.X - screen.MapPosition.X) / screen.MapPointSize);
             clicky = Convert.ToInt32((e.Y - screen.MapPosition.Y) / screen.MapPointSize);
-            commandListPos = 0;
-            useCommand(0);
-            //moveRight(first.player1, new Point(x,y));
+            if (!activePlayer.playerMoving && activePlayer.moveAviable && first.findPath(activePlayer.getMapPosition(screen), new Point(clickx, clicky)).First() != "NO WAY!")
+            {
+                activePlayer.moveAviable = false;
+                activePlayer.playerMoving = true;
+
+                commandList = first.findPath(activePlayer.getMapPosition(screen), new Point(clickx, clicky));
+                listBox1.DataSource = commandList;
+                commandCount = commandList.Count;
+                
+                commandListPos = 0;
+                useCommand(0);
+            }
 		}
 
         private void useCommand(int i)
         {
-            List<String> commandList = first.findPath(first.player1.getMapPosition(screen), new Point(clickx, clicky));
-            commandCount = commandList.Count;
-            
-
             pixelCounter = screen.MapPointSize;
             if (commandList.Any())
             {
                 if (commandList[i] == "up")
                 {
                     direction = new Point(0, -1);
-                    first.player1.usedAnimation = first.player1.getAnimation("up");
+                    activePlayer.usedAnimation = activePlayer.getAnimation("up");
                     playerTimer.Enabled = true;
 
                 }
                 else if (commandList[i] == "down")
                 {
                     direction = new Point(0, 1);
-                    first.player1.usedAnimation = first.player1.getAnimation("down");
+                    activePlayer.usedAnimation = activePlayer.getAnimation("down");
                     playerTimer.Enabled = true;
                 }
                 else if (commandList[i] == "left")
                 {
                     direction = new Point(-1, 0);
-                    first.player1.usedAnimation = first.player1.getAnimation("left");
+                    activePlayer.usedAnimation = activePlayer.getAnimation("left");
                     playerTimer.Enabled = true;
                 }
                 else if (commandList[i] == "right")
                 {
                     direction = new Point(1, 0);
-                    first.player1.usedAnimation = first.player1.getAnimation("right");
+                    activePlayer.usedAnimation = activePlayer.getAnimation("right");
                     playerTimer.Enabled = true;
                 }
                 else
@@ -344,42 +348,49 @@ namespace DrehenUndGehen
         private void playerTimer_Tick(object sender, EventArgs e)
         {
             timerCounter++;
-            if (Math.Abs(first.player1.counterX) == pixelCounter || Math.Abs(first.player1.counterY) == pixelCounter)
+
+            label1.Text = commandListPos.ToString();
+
+
+            if (Math.Abs(activePlayer.counterX) == pixelCounter || Math.Abs(activePlayer.counterY) == pixelCounter)
             {
-                first.player1.counterX = 0;
-                first.player1.counterY = 0;        
-                playerTimer.Stop();
+                playerTimer.Enabled = false;
+                activePlayer.counterX = 0;
+                activePlayer.counterY = 0;        
+                //playerTimer.Stop();
                 commandListPos ++;
-                useCommand(0);
-            
-                if(commandListPos == commandCount)
-                    first.player1.getMapPosition(screen);
+                if (commandListPos < commandCount)
+                    useCommand(commandListPos);
+
+                else if (commandListPos == commandCount)
+                {
+                    activePlayer.getMapPosition(screen);
+                    activePlayer.playerMoving = false;  //hört auf zu Laufen
                     
+                    if (activePlayer.playerId == 1)
+                        activePlayer = first.player2;
+                    else
+                        activePlayer = first.player1;
+
+                    activePlayer.pushAviable = true;                
+                }           
             }
-            first.player1.counterX += direction.X;
-            first.player1.counterY += direction.Y;
+            else
+            {
+                activePlayer.counterX += direction.X;
+                activePlayer.counterY += direction.Y;
 
-            first.player1.setPositionPixel(first.player1.positionPixel.X + direction.X, first.player1.positionPixel.Y + direction.Y);
-            label1.Text = first.player1.positionPixel.ToString();
-            //pbplayer1.Left += direction.X;
-            //pbplayer1.Top += direction.Y;
+                activePlayer.setPositionPixel(activePlayer.positionPixel.X + direction.X, activePlayer.positionPixel.Y + direction.Y);
 
-            int times = timerCounter / 50;
-            int nr = timerCounter - times * 50;
-            //pbplayer1.Image = first.player1.usedAnimation[nr / 25];
-            first.player1.shownBitmap = first.player1.usedAnimation[nr / 25];
-            //rend.drawPlayer();
+                int times = timerCounter / 50;
+                int nr = timerCounter - times * 50;
 
-            Invalidate(new Rectangle(first.player1.positionPixel.X + direction.X, first.player1.positionPixel.Y,screen.MapPointSize,screen.MapPointSize));
-           
+                activePlayer.shownBitmap = activePlayer.usedAnimation[Convert.ToInt32(nr / 25)];
+
+                Invalidate(new Rectangle(activePlayer.positionPixel.X + direction.X, activePlayer.positionPixel.Y, screen.MapPointSize, screen.MapPointSize));  
+            }
             
         }
-
-	
-
-
-
-
 	}
 }
 
