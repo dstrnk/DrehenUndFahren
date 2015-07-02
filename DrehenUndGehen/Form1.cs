@@ -167,7 +167,6 @@ namespace DrehenUndGehen
                     {
                         if (i % 2 != 0 && activePlayer.pushAviable)
                         {
-                            pathMoving = true;
 
                             if (new RectangleF(screen.MapPosition.X - screen.MapPointSize, screen.MapPosition.Y + screen.MapPointSize * i, screen.MapPointSize, screen.MapPointSize).Contains(e.Location))
                             {
@@ -179,6 +178,7 @@ namespace DrehenUndGehen
                                 //timer1.Start();
                                 //first.PushRow(i, first.exchangeCard);
                                 nextStepPlayer();
+                                pathMoving = true;
 
                             }
                             else if (new RectangleF(screen.MapPosition.X + screen.MapPointSize * i, screen.MapPosition.Y - screen.MapPointSize, screen.MapPointSize, screen.MapPointSize).Contains(e.Location))
@@ -192,6 +192,7 @@ namespace DrehenUndGehen
                                 //first.PushColumn(i, first.exchangeCard);
                                 //Refresh();
                                 nextStepPlayer();
+                                pathMoving = true;
                             }
                             else if (new RectangleF(screen.MapPosition.X + screen.MapPointSize * first.Mapsize, screen.MapPosition.Y + screen.MapPointSize * i, screen.MapPointSize, screen.MapPointSize).Contains(e.Location))
                             {
@@ -203,6 +204,7 @@ namespace DrehenUndGehen
                                 //first.PullRow(i, first.exchangeCard);
                                 //Refresh();
                                 nextStepPlayer();
+                                pathMoving = true;
                             }
                             else if (new RectangleF(screen.MapPosition.X + screen.MapPointSize * i, screen.MapPosition.Y + screen.MapPointSize * first.Mapsize, screen.MapPointSize, screen.MapPointSize).Contains(e.Location))
                             {
@@ -214,6 +216,7 @@ namespace DrehenUndGehen
                                 //first.PullColumn(i, first.exchangeCard);
                                 //Refresh();
                                 nextStepPlayer();
+                                pathMoving = true;
                             }
 
                         }
