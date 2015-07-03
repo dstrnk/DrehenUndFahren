@@ -315,7 +315,7 @@ namespace DrehenUndGehen
 		{
             clickx = Convert.ToInt32((e.X - screen.MapPosition.X) / screen.MapPointSize);
             clicky = Convert.ToInt32((e.Y - screen.MapPosition.Y) / screen.MapPointSize);
-            if (!pathMoving && !activePlayer.playerMoving && activePlayer.moveAviable && first.findPath(activePlayer.getMapPosition(screen), new Point(clickx, clicky)).First() != "NO WAY!")
+            if (!pathMoving && !activePlayer.playerMoving && activePlayer.moveAviable && activePlayer.getMapPosition(screen) != new Point(clickx, clicky) && first.findPath(activePlayer.getMapPosition(screen), new Point(clickx, clicky)).First() != "NO WAY!")
             {
                 activePlayer.moveAviable = false;
                 activePlayer.playerMoving = true;
