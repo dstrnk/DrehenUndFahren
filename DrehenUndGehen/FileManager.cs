@@ -89,7 +89,7 @@ namespace DrehenUndGehen
 		public Bitmap Buttonsettings { get; set; }
 
 		private Random ran;
-		public List<Bitmap> Proplist { get; set; }
+		public Dictionary<String,Bitmap> Proplist { get; set; }
 
 		public FileManager()
 		{
@@ -172,7 +172,7 @@ namespace DrehenUndGehen
 
 
 
-			Proplist = new List<Bitmap>();
+			Proplist = new Dictionary<String,Bitmap>();
 			ran = new Random((int)DateTime.Now.Ticks); //r
 			this.fillProplist();
 		}
@@ -210,35 +210,35 @@ namespace DrehenUndGehen
 		}
 		public void fillProplist()
 		{			
-			Proplist.Add(Axt);
-			Proplist.Add(Schild);
-			Proplist.Add(Rolle);
-			Proplist.Add(Vase);
-			Proplist.Add(Krone);
-			Proplist.Add(Zauberstab);
-			Proplist.Add(Kette);
-			Proplist.Add(Schwert);
-			Proplist.Add(Ohrringe);
-			Proplist.Add(Murmeln);
-			Proplist.Add(Rucksack);
-			Proplist.Add(Totenschaedel);
-			Proplist.Add(Flacon);
-			Proplist.Add(Kristall);
-			Proplist.Add(Kelch);
-			Proplist.Add(Sichel);
-			Proplist.Add(Fass);
-			Proplist.Add(Kristallkugel);
-			Proplist.Add(Runen);
-			Proplist.Add(Gebeine);
-			Proplist.Add(Brot);
-			Proplist.Add(Ring);
-			Proplist.Add(Pfeilbogen);
-			Proplist.Add(Ei);
-			Proplist.Add(Holygranade);
-			Proplist.Add(Zepter);
-			Proplist.Add(Hook);
-			Proplist.Add(Diamant);
-			Proplist.Add(Geld);
+			Proplist.Add("Axt",Axt);
+			Proplist.Add("Schild",Schild);
+			Proplist.Add("Rolle",Rolle);
+			Proplist.Add("Vase",Vase);
+			Proplist.Add("Krone",Krone);
+			Proplist.Add("Zauberstab",Zauberstab);
+			Proplist.Add("Kette",Kette);
+			Proplist.Add("Schwert",Schwert);
+			Proplist.Add("Ohrringe",Ohrringe);
+			Proplist.Add("Murmeln",Murmeln);
+			Proplist.Add("Rucksack",Rucksack);
+			Proplist.Add("Totenschaedel",Totenschaedel);
+			Proplist.Add("Flacon",Flacon);
+			Proplist.Add("Kristall",Kristall);
+			Proplist.Add("Kelch",Kelch);
+			Proplist.Add("Sichel",Sichel);
+			Proplist.Add("Fass",Fass);
+			Proplist.Add("Kristallkugel",Kristallkugel);
+			Proplist.Add("Runen",Runen);
+			Proplist.Add("Gebeine",Gebeine);
+			Proplist.Add("Brot",Brot);
+			Proplist.Add("Ring",Ring);
+			Proplist.Add("Pfeilbogen",Pfeilbogen);
+			Proplist.Add("Ei",Ei);
+			Proplist.Add("Holygrande",Holygranade);
+			Proplist.Add("Zepter",Zepter);
+			Proplist.Add("Hook",Hook);
+			Proplist.Add("Diamant",Diamant);
+			Proplist.Add("Geld",Geld);
 		}
 
 	}

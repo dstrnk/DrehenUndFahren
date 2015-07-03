@@ -19,6 +19,7 @@ namespace DrehenUndGehen
 		bool moving, push, mouseover;
 		
         bool pathMoving; //gibt an ob grad geschoben wird
+       
 
 		Point p;
 		int row = -1; 
@@ -52,7 +53,7 @@ namespace DrehenUndGehen
 			WindowState = FormWindowState.Maximized;
 
             pathMoving = false;
-			
+            
 		}
 
 		private void Form1_Load(object sender, EventArgs e)
@@ -87,7 +88,8 @@ namespace DrehenUndGehen
 			
 			rend = new Renderer(first, g,screen);
 			rend.drawBackground(mouseover);
-			rend.drawPropToFind();
+			
+            rend.drawPropToFind();
 
 
 			if (moving == true)
@@ -388,9 +390,27 @@ namespace DrehenUndGehen
 
                 else if (commandListPos == commandCount)
                 {
-                    activePlayer.getMapPosition(screen);
+                    //activePlayer.getMapPosition(screen);  Roman muss das da hin_? ich seh da keinen Sinn-??!?
+                    Point p = activePlayer.getMapPosition(screen);
                     activePlayer.playerMoving = false;  //hört auf zu Laufen
+                    if(first.Board[p.X,p.Y].propname == first.searchProp)
+                    { 
+                        MessageBox.Show("Du arsch hast es gefunden");
 
+                        first.usedProps.Remove(first.Board[p.X, p.Y].propname);
+                        first.Board[p.X, p.Y].proppic = null;
+                        first.Board[p.X, p.Y].propname = null;
+                        if (first.usedProps.Count != 0)
+                        {
+                            first.setNewRandomProp();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Das Spiel ist vorbei du Arsch");
+                        }
+                        Refresh();
+                    
+                    }
                     if (activePlayer.playerId == 1)
                     {
                         activePlayer = first.player2;

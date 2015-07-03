@@ -78,10 +78,10 @@ namespace DrehenUndGehen
 					}
 
 					g.DrawImage(first.Board[i, j].looks, screen.MapPosition.X + x * i, screen.MapPosition.Y + x * j, x, x);
-						if (first.Board[i, j].prop != null)
+						if (first.Board[i, j].proppic != null)
 						{
 							//first.Board[i, j].prop.MakeTransparent(Color.Black);
-							g.DrawImage(first.Board[i, j].prop, screen.MapPosition.X + x * i + (screen.MapPointSize / 4), screen.MapPosition.Y + x * j + (screen.MapPointSize / 4), x / 2, x / 2);
+							g.DrawImage(first.Board[i, j].proppic, screen.MapPosition.X + x * i + (screen.MapPointSize / 4), screen.MapPosition.Y + x * j + (screen.MapPointSize / 4), x / 2, x / 2);
 						}
 									
                 }
@@ -121,19 +121,19 @@ namespace DrehenUndGehen
 						if (j != row)
 						{
 							g.DrawImage(first.Board[i, j].looks, screen.MapPosition.X + x * i, screen.MapPosition.Y + x * j, x, x);
-							if (first.Board[i, j].prop != null)
+							if (first.Board[i, j].proppic != null)
 							{
 								//first.Board[i, j].prop.MakeTransparent(Color.Black);
-								g.DrawImage(first.Board[i, j].prop, screen.MapPosition.X + x * i + (screen.MapPointSize / 4), screen.MapPosition.Y + x * j + (screen.MapPointSize / 4), x / 2, x / 2);
+								g.DrawImage(first.Board[i, j].proppic, screen.MapPosition.X + x * i + (screen.MapPointSize / 4), screen.MapPosition.Y + x * j + (screen.MapPointSize / 4), x / 2, x / 2);
 							}
 						}
 						if ( j == row)
 						{
 							g.DrawImage(first.Board[i, j].looks, screen.MapPosition.X + x * i + PixelOffset, screen.MapPosition.Y + x * j, x, x);
-							if (first.Board[i, j].prop != null)
+							if (first.Board[i, j].proppic != null)
 							{
 								//first.Board[i, j].prop.MakeTransparent(Color.Black);
-								g.DrawImage(first.Board[i, j].prop, screen.MapPosition.X + x * i + (screen.MapPointSize / 4) + PixelOffset, screen.MapPosition.Y + x * j + (screen.MapPointSize / 4), x / 2, x / 2);
+								g.DrawImage(first.Board[i, j].proppic, screen.MapPosition.X + x * i + (screen.MapPointSize / 4) + PixelOffset, screen.MapPosition.Y + x * j + (screen.MapPointSize / 4), x / 2, x / 2);
 							}
 						}
 
@@ -168,19 +168,19 @@ namespace DrehenUndGehen
 						if (i != column)
 						{
 							g.DrawImage(first.Board[i, j].looks, screen.MapPosition.X + x * i, screen.MapPosition.Y + x * j, x, x);
-							if (first.Board[i, j].prop != null)
+							if (first.Board[i, j].proppic != null)
 							{
 								//first.Board[i, j].prop.MakeTransparent(Color.Black);
-								g.DrawImage(first.Board[i, j].prop, screen.MapPosition.X + x * i + (screen.MapPointSize / 4), screen.MapPosition.Y + x * j + (screen.MapPointSize / 4), x / 2, x / 2);
+								g.DrawImage(first.Board[i, j].proppic, screen.MapPosition.X + x * i + (screen.MapPointSize / 4), screen.MapPosition.Y + x * j + (screen.MapPointSize / 4), x / 2, x / 2);
 							}
 						}
 						if (i == column)
 						{
 							g.DrawImage(first.Board[i, j].looks, screen.MapPosition.X + x * i, screen.MapPosition.Y + x * j + PixelOffset, x, x);
-							if (first.Board[i, j].prop != null)
+							if (first.Board[i, j].proppic != null)
 							{
 								//first.Board[i, j].prop.MakeTransparent(Color.Black);
-								g.DrawImage(first.Board[i, j].prop, screen.MapPosition.X + x * i + (screen.MapPointSize / 4), screen.MapPosition.Y + x * j + (screen.MapPointSize / 4) + PixelOffset, x / 2, x / 2);
+								g.DrawImage(first.Board[i, j].proppic, screen.MapPosition.X + x * i + (screen.MapPointSize / 4), screen.MapPosition.Y + x * j + (screen.MapPointSize / 4) + PixelOffset, x / 2, x / 2);
 							}
 						}
 
@@ -215,19 +215,19 @@ namespace DrehenUndGehen
 						if (i != column)
 						{
 							g.DrawImage(first.Board[i, j].looks, screen.MapPosition.X + x * i, screen.MapPosition.Y + x * j, x, x);
-							if (first.Board[i, j].prop != null)
+							if (first.Board[i, j].proppic != null)
 							{
 								//first.Board[i, j].prop.MakeTransparent(Color.Black);
-								g.DrawImage(first.Board[i, j].prop, screen.MapPosition.X + x * i + (screen.MapPointSize / 4), screen.MapPosition.Y + x * j + (screen.MapPointSize / 4), x / 2, x / 2);
+								g.DrawImage(first.Board[i, j].proppic, screen.MapPosition.X + x * i + (screen.MapPointSize / 4), screen.MapPosition.Y + x * j + (screen.MapPointSize / 4), x / 2, x / 2);
 							}
 						}
 						if (i == column)
 						{
 							g.DrawImage(first.Board[i, j].looks, screen.MapPosition.X + x * i, screen.MapPosition.Y + x * j - PixelOffset, x, x);
-							if (first.Board[i, j].prop != null)
+							if (first.Board[i, j].proppic != null)
 							{
 								//first.Board[i, j].prop.MakeTransparent(Color.Black);
-								g.DrawImage(first.Board[i, j].prop, screen.MapPosition.X + x * i + (screen.MapPointSize / 4), screen.MapPosition.Y + x * j + (screen.MapPointSize / 4) - PixelOffset, x / 2, x / 2);
+								g.DrawImage(first.Board[i, j].proppic, screen.MapPosition.X + x * i + (screen.MapPointSize / 4), screen.MapPosition.Y + x * j + (screen.MapPointSize / 4) - PixelOffset, x / 2, x / 2);
 							}
 						}
 
@@ -264,19 +264,19 @@ namespace DrehenUndGehen
 						if (j != row)
 						{
 							g.DrawImage(first.Board[i, j].looks, screen.MapPosition.X + x * i, screen.MapPosition.Y + x * j, x, x);
-							if (first.Board[i, j].prop != null)
+							if (first.Board[i, j].proppic != null)
 							{
 								//first.Board[i, j].prop.MakeTransparent(Color.Black);
-								g.DrawImage(first.Board[i, j].prop, screen.MapPosition.X + x * i + (screen.MapPointSize / 4), screen.MapPosition.Y + x * j + (screen.MapPointSize / 4), x / 2, x / 2);
+								g.DrawImage(first.Board[i, j].proppic, screen.MapPosition.X + x * i + (screen.MapPointSize / 4), screen.MapPosition.Y + x * j + (screen.MapPointSize / 4), x / 2, x / 2);
 							}
 						}
 						if (j == row)
 						{
 							g.DrawImage(first.Board[i, j].looks, screen.MapPosition.X + x * i - PixelOffset, screen.MapPosition.Y + x * j, x, x);
-							if (first.Board[i, j].prop != null)
+							if (first.Board[i, j].proppic != null)
 							{
 								//first.Board[i, j].prop.MakeTransparent(Color.Black);
-								g.DrawImage(first.Board[i, j].prop, screen.MapPosition.X + x * i + (screen.MapPointSize / 4) - PixelOffset, screen.MapPosition.Y + x * j + (screen.MapPointSize / 4), x / 2, x / 2);
+								g.DrawImage(first.Board[i, j].proppic, screen.MapPosition.X + x * i + (screen.MapPointSize / 4) - PixelOffset, screen.MapPosition.Y + x * j + (screen.MapPointSize / 4), x / 2, x / 2);
 							}
 						}
 
@@ -288,20 +288,20 @@ namespace DrehenUndGehen
 		{
 			
 			g.DrawImage(first.exchangeCard.looks,screen.ExchangeCard.X,screen.ExchangeCard.Y,screen.MapPointSize,screen.MapPointSize);
-			if (first.exchangeCard.prop != null)
+			if (first.exchangeCard.proppic != null)
 			{
 
-				g.DrawImage(first.exchangeCard.prop, screen.ExchangeCard.X + screen.ExchangeCard.Width / 4, screen.ExchangeCard.Y + screen.ExchangeCard.Height / 4, screen.MapPointSize / 2, screen.MapPointSize / 2);
+				g.DrawImage(first.exchangeCard.proppic, screen.ExchangeCard.X + screen.ExchangeCard.Width / 4, screen.ExchangeCard.Y + screen.ExchangeCard.Height / 4, screen.MapPointSize / 2, screen.MapPointSize / 2);
 
 			}
 		}
 		public void drawMovingExCard(int x, int y)
 		{
 			g.DrawImage(first.exchangeCard.looks, x, y, screen.MapPointSize, screen.MapPointSize);
-			if (first.exchangeCard.prop != null)
+			if (first.exchangeCard.proppic != null)
 			{
 
-				g.DrawImage(first.exchangeCard.prop, screen.ExchangeCard.X + screen.ExchangeCard.Width / 4, screen.ExchangeCard.Y + screen.ExchangeCard.Height / 4, screen.MapPointSize / 2, screen.MapPointSize / 2);
+				g.DrawImage(first.exchangeCard.proppic,x /*screen.ExchangeCard.X*/ + screen.ExchangeCard.Width / 4,y /*screen.ExchangeCard.Y*/ + screen.ExchangeCard.Height / 4, screen.MapPointSize / 2, screen.MapPointSize / 2);
 
 			}
  
@@ -312,33 +312,33 @@ namespace DrehenUndGehen
 			if(push && row !=-1)
 			{
 				g.DrawImage(first.exchangeCard.looks, screen.MapPosition.X - screen.MapPointSize + pixeloffset, screen.MapPosition.Y + screen.MapPointSize * row, screen.MapPointSize, screen.MapPointSize);
-				if (first.exchangeCard.prop != null)
+				if (first.exchangeCard.proppic != null)
 				{
-					g.DrawImage(first.exchangeCard.prop, screen.MapPosition.X - screen.MapPointSize + pixeloffset + screen.MapPointSize / 4, screen.MapPosition.Y + screen.MapPointSize * row + screen.MapPointSize / 4, screen.MapPointSize / 2, screen.MapPointSize / 2); 
+					g.DrawImage(first.exchangeCard.proppic, screen.MapPosition.X - screen.MapPointSize + pixeloffset + screen.MapPointSize / 4, screen.MapPosition.Y + screen.MapPointSize * row + screen.MapPointSize / 4, screen.MapPointSize / 2, screen.MapPointSize / 2); 
 				}
 			}
 			else if (push && row == -1)
 			{
 				g.DrawImage(first.exchangeCard.looks, screen.MapPosition.X + screen.MapPointSize * column, screen.MapPosition.Y - screen.MapPointSize + pixeloffset, screen.MapPointSize, screen.MapPointSize);
-				if (first.exchangeCard.prop!= null)
+				if (first.exchangeCard.proppic!= null)
 				{
-					g.DrawImage(first.exchangeCard.prop, screen.MapPosition.X + screen.MapPointSize * column + screen.MapPointSize / 4, screen.MapPosition.Y - screen.MapPointSize + pixeloffset + screen.MapPointSize / 4, screen.MapPointSize / 2, screen.MapPointSize / 2); 
+					g.DrawImage(first.exchangeCard.proppic, screen.MapPosition.X + screen.MapPointSize * column + screen.MapPointSize / 4, screen.MapPosition.Y - screen.MapPointSize + pixeloffset + screen.MapPointSize / 4, screen.MapPointSize / 2, screen.MapPointSize / 2); 
 				}
 			}
 			else if (!push && row != -1)
 			{
 				g.DrawImage(first.exchangeCard.looks, screen.MapPosition.X + screen.MapPointSize * first.Mapsize - pixeloffset, screen.MapPosition.Y + screen.MapPointSize * row, screen.MapPointSize, screen.MapPointSize);
-				if (first.exchangeCard.prop != null)
+				if (first.exchangeCard.proppic != null)
 				{
-					g.DrawImage(first.exchangeCard.prop, screen.MapPosition.X + screen.MapPointSize * first.Mapsize - pixeloffset + screen.MapPointSize / 4, screen.MapPosition.Y + screen.MapPointSize * row + screen.MapPointSize / 4, screen.MapPointSize / 2, screen.MapPointSize / 2);
+					g.DrawImage(first.exchangeCard.proppic, screen.MapPosition.X + screen.MapPointSize * first.Mapsize - pixeloffset + screen.MapPointSize / 4, screen.MapPosition.Y + screen.MapPointSize * row + screen.MapPointSize / 4, screen.MapPointSize / 2, screen.MapPointSize / 2);
 				}
 			}
 			else 
 			{
 				g.DrawImage(first.exchangeCard.looks, screen.MapPosition.X + screen.MapPointSize * column, screen.MapPosition.Y + screen.MapPointSize * first.Mapsize - pixeloffset, screen.MapPointSize, screen.MapPointSize);
-				if (first.exchangeCard.prop != null)
+				if (first.exchangeCard.proppic != null)
 				{
-					g.DrawImage(first.exchangeCard.prop, screen.MapPosition.X + screen.MapPointSize * column + screen.MapPointSize / 4, screen.MapPosition.Y + screen.MapPointSize * first.Mapsize - pixeloffset + screen.MapPointSize / 4, screen.MapPointSize / 2, screen.MapPointSize / 2);
+					g.DrawImage(first.exchangeCard.proppic, screen.MapPosition.X + screen.MapPointSize * column + screen.MapPointSize / 4, screen.MapPosition.Y + screen.MapPointSize * first.Mapsize - pixeloffset + screen.MapPointSize / 4, screen.MapPointSize / 2, screen.MapPointSize / 2);
 				}
 			}
 		}
@@ -431,16 +431,28 @@ namespace DrehenUndGehen
 
 	public void drawPropToFind()
 	{
-		int count = ran.Next(first.usedProps.Count); 
-		
-		if (first.usedProps.Count != 0)
-		{
-			
-			g.DrawImage(first.usedProps[count], screen.propToFind);
-			
-		
-		}
-			
+        g.DrawImage(first.searchProppic, screen.propToFind);
+       /* string[] keys = first.usedProps.Keys.ToArray();
+        int savecount = 0;
+    
+        {
+            int count = ran.Next(first.usedProps.Count);
+            savecount = count;
+
+            if (first.usedProps.Count != 0)
+            {
+                
+                g.DrawImage(first.searchProppic, screen.propToFind);
+
+
+            }
+        }
+       /* else
+        {
+            g.DrawImage(first.usedProps[keys[savecount]], screen.propToFind);
+            
+        }
+			*/
 		
 
 	}

@@ -27,10 +27,13 @@ namespace DrehenUndGehen
 		//public int MapPointSize { get; set; }
 
 		public Gamescreen screen { get; set; }
-		public List<Bitmap> usedProps { get; set; }
+		public Dictionary<String,Bitmap> usedProps { get; set; }
 		public Random ran { get; set; }
         public Player player1;
         public Player player2;
+
+        public string searchProp { get; set; }
+        public Bitmap searchProppic { get; set; }
 
         /*
          * 
@@ -59,11 +62,12 @@ namespace DrehenUndGehen
 			//this.MappositionY = MappositionY;
 			//this.MapPointSize = MapPointSize;
 			exchangeCard = new Mappoint(files.randomBitmap());
-			this.usedProps = new List<Bitmap>();
+			this.usedProps = new Dictionary<String,Bitmap>();
 			//Ein Mappoint zum Verschieben wird beim ersten mal zufällig erstellt
 			ran = new Random();
             player1 = new Player(4, new Point(0,0));
             player2 = new Player(1, new Point(Mapsize-1,Mapsize-1));
+         
 		}
 
         /*
@@ -330,8 +334,13 @@ namespace DrehenUndGehen
 
 
 			public void addPropToMap(Map first)
-			{				
-				int indexListe = 0;
+			{
+
+                string[] keys= files.Proplist.Keys.ToArray();
+                
+                int indexListe = 0;
+
+                
 				
 				for (int i = 0; i < first.Mapsize; i++)
 				{
@@ -340,16 +349,32 @@ namespace DrehenUndGehen
 
 						if (ran.Next(3) == 1 && indexListe < files.Proplist.Count)
 						{
-							Board[i, j].prop = files.Proplist[indexListe];
-							this.usedProps.Add(files.Proplist[indexListe]);
+                            Board[i, j].propname =keys[indexListe];
+                            Board[i, j].proppic = files.Proplist[keys[indexListe]];
+                            this.usedProps.Add(keys[indexListe], files.Proplist[keys[indexListe]]);
 							indexListe += 1;
 
 						}
 
 					}
 				}
+                int randomprop = ran.Next(this.usedProps.Count);
+                this.searchProppic = files.Proplist[keys[randomprop]];
+                this.searchProp = keys[randomprop];
 
 			}
+
+
+            public void setNewRandomProp()
+            {
+               
+                    string[] keys = this.usedProps.Keys.ToArray();
+                    int randomprop = ran.Next(this.usedProps.Count);
+                    this.searchProppic = this.usedProps[keys[randomprop]];
+                    this.searchProp = keys[randomprop];
+                
+           
+            }
 
           public List<Point> getConnectedPaths(Point point)
         {
@@ -498,6 +523,8 @@ namespace DrehenUndGehen
             else
                 return true;
         }
+
+       
 	}
 }
 

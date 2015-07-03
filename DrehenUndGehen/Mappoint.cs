@@ -27,7 +27,8 @@ namespace DrehenUndGehen
 		public bool right { get; set; }
 		public int size { get; set; }
 		public Bitmap looks { get; set; }
-		public Bitmap prop { get; set; }
+		public String propname { get; set; }
+        public Bitmap proppic { get; set; }
 	
 		
 	/*
@@ -55,7 +56,8 @@ namespace DrehenUndGehen
 			this.left = left;
 			this.right = right;			
 			this.looks = looks;
-			this.prop = null;
+            this.proppic = null;
+            this.propname = "";
             
             
 
