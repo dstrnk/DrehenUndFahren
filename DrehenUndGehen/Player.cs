@@ -13,6 +13,8 @@ namespace DrehenUndGehen
         public Point positionPixel { get; set; }    //in Pixel
         public Point positionMap { get; set; }      //Mapposition
 
+        public int collectedItems { get; set; }     //Anzahl der eingesammelten Gegenstände
+
         private Bitmap[] down, up, right, left;     //alle Bilder
         public Bitmap frontBitmap { get; set; }     //Vorderansicht vom Charakter
         public Bitmap shownBitmap { get; set; }     //derzeitig geladenen Bitmap

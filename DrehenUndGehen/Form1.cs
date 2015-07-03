@@ -390,12 +390,14 @@ namespace DrehenUndGehen
 
                 else if (commandListPos == commandCount)
                 {
-                    //activePlayer.getMapPosition(screen);  Roman muss das da hin_? ich seh da keinen Sinn-??!?
                     Point p = activePlayer.getMapPosition(screen);
                     activePlayer.playerMoving = false;  //hört auf zu Laufen
                     if(first.Board[p.X,p.Y].propname == first.searchProp)
-                    { 
-                        MessageBox.Show("Du arsch hast es gefunden");
+                    {
+                        activePlayer.collectedItems++;  //eingesammelter Gegenstand wird dem Spieler gutgeschrieben
+                        label2.Text = first.player1.collectedItems.ToString();      //Anzeige der eingesammelten Gegenständen
+                        label3.Text = first.player2.collectedItems.ToString();
+                       
 
                         first.usedProps.Remove(first.Board[p.X, p.Y].propname);
                         first.Board[p.X, p.Y].proppic = null;
@@ -405,8 +407,13 @@ namespace DrehenUndGehen
                             first.setNewRandomProp();
                         }
                         else
-                        {
-                            MessageBox.Show("Das Spiel ist vorbei du Arsch");
+                        {                            
+                            if(first.player1.collectedItems > first.player2.collectedItems)
+                                MessageBox.Show("Spieler1 hat gewonnen!");
+                            else if (first.player1.collectedItems < first.player2.collectedItems)
+                                MessageBox.Show("Spieler2 hat gewonnen!");
+                            else
+                                MessageBox.Show("Unentschieden");
                         }
                         Refresh();
                     
