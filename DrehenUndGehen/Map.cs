@@ -347,12 +347,12 @@ namespace DrehenUndGehen
 					for (int j = 0; j < first.Mapsize; j++)
 					{
 
-						if (ran.Next(3) == 1 && indexListe < files.Proplist.Count)
+                        if (ran.Next(3) == 1 && indexListe < files.Proplist.Count && (i != 0 || j != 0) && (i != first.Mapsize -1 || j != first.Mapsize -1)) //Items werden nicht auf die Startposition der Spieler generiert 
 						{
-                            Board[i, j].propname =keys[indexListe];
+                            Board[i, j].propname = keys[indexListe];
                             Board[i, j].proppic = files.Proplist[keys[indexListe]];
                             this.usedProps.Add(keys[indexListe], files.Proplist[keys[indexListe]]);
-							indexListe += 1;
+                            indexListe += 1;
 
 						}
 
