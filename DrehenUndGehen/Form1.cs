@@ -170,7 +170,7 @@ namespace DrehenUndGehen
                         if (i % 2 != 0 && activePlayer.pushAviable)
                         {
 
-                            if (new RectangleF(screen.MapPosition.X - screen.MapPointSize, screen.MapPosition.Y + screen.MapPointSize * i, screen.MapPointSize, screen.MapPointSize).Contains(e.Location))
+                            if (new RectangleF(screen.MapPosition.X - screen.MapPointSize, screen.MapPosition.Y + screen.MapPointSize * i, screen.MapPointSize, screen.MapPointSize).Contains(e.Location) && first.player1.getMapPosition(screen) != new Point(first.Mapsize - 1, i) && first.player2.getMapPosition(screen) != new Point(first.Mapsize - 1, i))
                             {
                                 push = true;
                                 row = i;
@@ -183,7 +183,7 @@ namespace DrehenUndGehen
                                 pathMoving = true;
 
                             }
-                            else if (new RectangleF(screen.MapPosition.X + screen.MapPointSize * i, screen.MapPosition.Y - screen.MapPointSize, screen.MapPointSize, screen.MapPointSize).Contains(e.Location))
+                            else if (new RectangleF(screen.MapPosition.X + screen.MapPointSize * i, screen.MapPosition.Y - screen.MapPointSize, screen.MapPointSize, screen.MapPointSize).Contains(e.Location) && first.player1.getMapPosition(screen) != new Point(i, first.Mapsize-1) && first.player2.getMapPosition(screen) != new Point(i, first.Mapsize-1))
                             {
                                 push = true;
                                 column = i;
@@ -196,7 +196,7 @@ namespace DrehenUndGehen
                                 nextStepPlayer();
                                 pathMoving = true;
                             }
-                            else if (new RectangleF(screen.MapPosition.X + screen.MapPointSize * first.Mapsize, screen.MapPosition.Y + screen.MapPointSize * i, screen.MapPointSize, screen.MapPointSize).Contains(e.Location))
+                            else if (new RectangleF(screen.MapPosition.X + screen.MapPointSize * first.Mapsize, screen.MapPosition.Y + screen.MapPointSize * i, screen.MapPointSize, screen.MapPointSize).Contains(e.Location) && first.player1.getMapPosition(screen) != new Point(0, i) && first.player2.getMapPosition(screen) != new Point(0, i))
                             {
                                 push = false;
                                 row = i;
@@ -208,7 +208,7 @@ namespace DrehenUndGehen
                                 nextStepPlayer();
                                 pathMoving = true;
                             }
-                            else if (new RectangleF(screen.MapPosition.X + screen.MapPointSize * i, screen.MapPosition.Y + screen.MapPointSize * first.Mapsize, screen.MapPointSize, screen.MapPointSize).Contains(e.Location))
+                            else if (new RectangleF(screen.MapPosition.X + screen.MapPointSize * i, screen.MapPosition.Y + screen.MapPointSize * first.Mapsize, screen.MapPointSize, screen.MapPointSize).Contains(e.Location) && first.player1.getMapPosition(screen) != new Point(i, 0) && first.player2.getMapPosition(screen) != new Point(i, 0))
                             {
                                 push = false;
                                 column = i;
