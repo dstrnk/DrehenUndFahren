@@ -36,6 +36,11 @@ namespace DrehenUndGehen
         int timerCounter;
         List<String> commandList;
 
+        int oldP1PosX;
+        int oldP1PosY;
+        int oldP2PosX;
+        int oldP2PosY;
+
         Player activePlayer;
 
 		public Form1()
@@ -110,6 +115,26 @@ namespace DrehenUndGehen
 			{
 				rend.drawMap(pixeloffset,push,row,column);
 				rend.drawExchangeCard(pixeloffset,push,row,column);
+
+                //Spieler1 verschieben
+                if (first.player1.getMapPosition(screen).Y == row && push)
+                    first.player1.positionPixel = new Point(oldP1PosX + pixeloffset, oldP1PosY);
+                else if (first.player1.getMapPosition(screen).Y == row && !push)
+                    first.player1.positionPixel = new Point(oldP1PosX - pixeloffset, oldP1PosY);
+                else if (first.player1.getMapPosition(screen).X == column && push)
+                    first.player1.positionPixel = new Point(oldP1PosX, oldP1PosY + pixeloffset);
+                else if (first.player1.getMapPosition(screen).X == column && !push)
+                    first.player1.positionPixel = new Point(oldP1PosX, oldP1PosY - pixeloffset);
+
+                //Spieler2 verschieben
+                if (first.player2.getMapPosition(screen).Y == row && push)
+                    first.player2.positionPixel = new Point(oldP2PosX + pixeloffset, oldP2PosY);
+                else if (first.player2.getMapPosition(screen).Y == row && !push)
+                    first.player2.positionPixel = new Point(oldP2PosX - pixeloffset, oldP2PosY);
+                else if (first.player2.getMapPosition(screen).X == column && push)
+                    first.player2.positionPixel = new Point(oldP2PosX, oldP2PosY + pixeloffset);
+                else if (first.player2.getMapPosition(screen).X == column && !push)
+                    first.player2.positionPixel = new Point(oldP2PosX, oldP2PosY - pixeloffset);
 			}
             
             rend.drawPlayer();
@@ -169,6 +194,10 @@ namespace DrehenUndGehen
                     {
                         if (i % 2 != 0 && activePlayer.pushAviable)
                         {
+                            oldP1PosX = first.player1.positionPixel.X;
+                            oldP1PosY = first.player1.positionPixel.Y;
+                            oldP2PosX = first.player2.positionPixel.X;
+                            oldP2PosY = first.player2.positionPixel.Y;
 
                             if (new RectangleF(screen.MapPosition.X - screen.MapPointSize, screen.MapPosition.Y + screen.MapPointSize * i, screen.MapPointSize, screen.MapPointSize).Contains(e.Location) && first.player1.getMapPosition(screen) != new Point(first.Mapsize - 1, i) && first.player2.getMapPosition(screen) != new Point(first.Mapsize - 1, i))
                             {
