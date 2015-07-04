@@ -208,7 +208,6 @@ namespace DrehenUndGehen
                                 first.files.player.Play();
                                 //timer1.Start();
                                 //first.PushRow(i, first.exchangeCard);
-                                nextStepPlayer();
                                 pathMoving = true;
 
                             }
@@ -222,7 +221,6 @@ namespace DrehenUndGehen
 
                                 //first.PushColumn(i, first.exchangeCard);
                                 //Refresh();
-                                nextStepPlayer();
                                 pathMoving = true;
                             }
                             else if (new RectangleF(screen.MapPosition.X + screen.MapPointSize * first.Mapsize, screen.MapPosition.Y + screen.MapPointSize * i, screen.MapPointSize, screen.MapPointSize).Contains(e.Location) && first.player1.getMapPosition(screen) != new Point(0, i) && first.player2.getMapPosition(screen) != new Point(0, i))
@@ -234,7 +232,6 @@ namespace DrehenUndGehen
                                 first.files.player.Play();
                                 //first.PullRow(i, first.exchangeCard);
                                 //Refresh();
-                                nextStepPlayer();
                                 pathMoving = true;
                             }
                             else if (new RectangleF(screen.MapPosition.X + screen.MapPointSize * i, screen.MapPosition.Y + screen.MapPointSize * first.Mapsize, screen.MapPointSize, screen.MapPointSize).Contains(e.Location) && first.player1.getMapPosition(screen) != new Point(i, 0) && first.player2.getMapPosition(screen) != new Point(i, 0))
@@ -246,7 +243,6 @@ namespace DrehenUndGehen
                                 first.files.player.Play();
                                 //first.PullColumn(i, first.exchangeCard);
                                 //Refresh();
-                                nextStepPlayer();
                                 pathMoving = true;
                             }
 
@@ -271,17 +267,42 @@ namespace DrehenUndGehen
 
         private void nextStepPlayer() 
         {
-            activePlayer.moveAviable = true;
-            activePlayer.pushAviable = false;
-
-            if (activePlayer.playerId == 1)
+            if (first.getConnectedPaths(activePlayer.getMapPosition(screen)).Count == 1)
             {
-                label1.Text = "Spieler 1 geht";
+                activePlayer.pushAviable = false;
+                if (activePlayer.playerId == 1)
+                {
+                    activePlayer = first.player2;
+                }
+                else
+                {
+                    activePlayer = first.player1;
+                }
+                activePlayer.moveAviable = false;
+                activePlayer.pushAviable = true;
+                if (activePlayer.playerId == 1)
+                {
+                    label1.Text = "Spieler 1 schiebt";
+                }
+                else
+                {
+                    label1.Text = "Spieler 2 schiebt";
+                }
             }
             else
             {
-                label1.Text = "Spieler 2 geht";
+                activePlayer.moveAviable = true;
+                activePlayer.pushAviable = false;
+                if (activePlayer.playerId == 1)
+                {
+                    label1.Text = "Spieler 1 geht";
+                }
+                else
+                {
+                    label1.Text = "Spieler 2 geht";
+                }
             }
+   
         }
 
         private void Form1_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -307,6 +328,7 @@ namespace DrehenUndGehen
 					timer1.Stop();
 					pixeloffset = 0;
                     pathMoving = false;
+                    nextStepPlayer();
 				}
 				else if(push && row ==- 1)
 				{
@@ -316,6 +338,7 @@ namespace DrehenUndGehen
 					timer1.Stop();
 					pixeloffset = 0;
                     pathMoving = false;
+                    nextStepPlayer();
 				}
 				else if (!push && row != -1)
 				{
@@ -325,6 +348,7 @@ namespace DrehenUndGehen
 					timer1.Stop();
 					pixeloffset = 0;
                     pathMoving = false;
+                    nextStepPlayer();
 				}
 				else if (!push && row ==-1)
 				{
@@ -334,6 +358,7 @@ namespace DrehenUndGehen
 					timer1.Stop();
 					pixeloffset = 0;
                     pathMoving = false;
+                    nextStepPlayer();
 				}
 			}
 			
