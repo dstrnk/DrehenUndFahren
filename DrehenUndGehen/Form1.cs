@@ -444,34 +444,7 @@ namespace DrehenUndGehen
 
                 else if (commandListPos == commandCount)
                 {
-                    Point p = activePlayer.getMapPosition(screen);
-                    activePlayer.playerMoving = false;  //hört auf zu Laufen
-                    if(first.Board[p.X,p.Y].propname == first.searchProp)
-                    {
-                        activePlayer.collectedItems++;  //eingesammelter Gegenstand wird dem Spieler gutgeschrieben
-                        label2.Text = first.player1.collectedItems.ToString();      //Anzeige der eingesammelten Gegenständen
-                        label3.Text = first.player2.collectedItems.ToString();
-                       
-
-                        first.usedProps.Remove(first.Board[p.X, p.Y].propname);
-                        first.Board[p.X, p.Y].proppic = null;
-                        first.Board[p.X, p.Y].propname = null;
-                        if (first.usedProps.Count != 0)
-                        {
-                            first.setNewRandomProp();
-                        }
-                        else
-                        {                            
-                            if(first.player1.collectedItems > first.player2.collectedItems)
-                                MessageBox.Show("Spieler1 hat gewonnen!");
-                            else if (first.player1.collectedItems < first.player2.collectedItems)
-                                MessageBox.Show("Spieler2 hat gewonnen!");
-                            else
-                                MessageBox.Show("Unentschieden");
-                        }
-                        Refresh();
-                    
-                    }
+                    foundProp(activePlayer.getMapPosition(screen));
                     if (activePlayer.playerId == 1)
                     {
                         activePlayer = first.player2;
@@ -482,7 +455,7 @@ namespace DrehenUndGehen
                         activePlayer = first.player1;
                         label1.Text = "Spieler 1 schiebt";
                     }
-
+                    foundProp(activePlayer.getMapPosition(screen));
                     activePlayer.pushAviable = true;                
                 }           
             }
@@ -501,6 +474,36 @@ namespace DrehenUndGehen
                 Invalidate(new Rectangle(activePlayer.positionPixel.X + direction.X, activePlayer.positionPixel.Y, screen.MapPointSize, screen.MapPointSize));  
             }
             
+        }
+
+        private void foundProp(Point p)
+        {
+            activePlayer.playerMoving = false;  //hört auf zu Laufen
+            if (first.Board[p.X, p.Y].propname == first.searchProp)
+            {
+                activePlayer.collectedItems++;  //eingesammelter Gegenstand wird dem Spieler gutgeschrieben
+                label2.Text = first.player1.collectedItems.ToString();      //Anzeige der eingesammelten Gegenständen
+                label3.Text = first.player2.collectedItems.ToString();
+
+
+                first.usedProps.Remove(first.Board[p.X, p.Y].propname);
+                first.Board[p.X, p.Y].proppic = null;
+                first.Board[p.X, p.Y].propname = null;
+                if (first.usedProps.Count != 0)
+                {
+                    first.setNewRandomProp();
+                }
+                else
+                {
+                    if (first.player1.collectedItems > first.player2.collectedItems)
+                        MessageBox.Show("Spieler1 hat gewonnen!");
+                    else if (first.player1.collectedItems < first.player2.collectedItems)
+                        MessageBox.Show("Spieler2 hat gewonnen!");
+                    else
+                        MessageBox.Show("Unentschieden");
+                }
+                Refresh();
+            }
         }
 	}
 }
