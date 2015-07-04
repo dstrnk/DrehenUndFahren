@@ -19,7 +19,6 @@ namespace DrehenUndGehen
 		bool moving, push, mouseover;
 		
         bool pathMoving; //gibt an ob grad geschoben wird
-       
 
 		Point p;
 		int row = -1; 
@@ -199,7 +198,7 @@ namespace DrehenUndGehen
                             oldP2PosX = first.player2.positionPixel.X;
                             oldP2PosY = first.player2.positionPixel.Y;
 
-                            if (new RectangleF(screen.MapPosition.X - screen.MapPointSize, screen.MapPosition.Y + screen.MapPointSize * i, screen.MapPointSize, screen.MapPointSize).Contains(e.Location) && first.player1.getMapPosition(screen) != new Point(first.Mapsize - 1, i) && first.player2.getMapPosition(screen) != new Point(first.Mapsize - 1, i))
+                            if (new RectangleF(screen.MapPosition.X - screen.MapPointSize, screen.MapPosition.Y + screen.MapPointSize * i, screen.MapPointSize, screen.MapPointSize).Contains(e.Location) && first.player1.getMapPosition(screen) != new Point(first.Mapsize - 1, i) && first.player2.getMapPosition(screen) != new Point(first.Mapsize - 1, i) && (first.dontPush.X != i || first.dontPush.Y == first.Mapsize-1))
                             {
                                 push = true;
                                 row = i;
@@ -208,10 +207,11 @@ namespace DrehenUndGehen
                                 first.files.player.Play();
                                 //timer1.Start();
                                 //first.PushRow(i, first.exchangeCard);
+                                first.dontPush = new Point(i, first.Mapsize-1);
                                 pathMoving = true;
 
                             }
-                            else if (new RectangleF(screen.MapPosition.X + screen.MapPointSize * i, screen.MapPosition.Y - screen.MapPointSize, screen.MapPointSize, screen.MapPointSize).Contains(e.Location) && first.player1.getMapPosition(screen) != new Point(i, first.Mapsize-1) && first.player2.getMapPosition(screen) != new Point(i, first.Mapsize-1))
+                            else if (new RectangleF(screen.MapPosition.X + screen.MapPointSize * i, screen.MapPosition.Y - screen.MapPointSize, screen.MapPointSize, screen.MapPointSize).Contains(e.Location) && first.player1.getMapPosition(screen) != new Point(i, first.Mapsize - 1) && first.player2.getMapPosition(screen) != new Point(i, first.Mapsize - 1) && (first.dontPush.Y != i || first.dontPush.X == first.Mapsize - 1))
                             {
                                 push = true;
                                 column = i;
@@ -221,9 +221,10 @@ namespace DrehenUndGehen
 
                                 //first.PushColumn(i, first.exchangeCard);
                                 //Refresh();
+                                first.dontPush = new Point(first.Mapsize-1, i);
                                 pathMoving = true;
                             }
-                            else if (new RectangleF(screen.MapPosition.X + screen.MapPointSize * first.Mapsize, screen.MapPosition.Y + screen.MapPointSize * i, screen.MapPointSize, screen.MapPointSize).Contains(e.Location) && first.player1.getMapPosition(screen) != new Point(0, i) && first.player2.getMapPosition(screen) != new Point(0, i))
+                            else if (new RectangleF(screen.MapPosition.X + screen.MapPointSize * first.Mapsize, screen.MapPosition.Y + screen.MapPointSize * i, screen.MapPointSize, screen.MapPointSize).Contains(e.Location) && first.player1.getMapPosition(screen) != new Point(0, i) && first.player2.getMapPosition(screen) != new Point(0, i) && (first.dontPush.X != i || first.dontPush.Y == 0))
                             {
                                 push = false;
                                 row = i;
@@ -232,15 +233,17 @@ namespace DrehenUndGehen
                                 first.files.player.Play();
                                 //first.PullRow(i, first.exchangeCard);
                                 //Refresh();
+                                first.dontPush = new Point(i, 0);
                                 pathMoving = true;
                             }
-                            else if (new RectangleF(screen.MapPosition.X + screen.MapPointSize * i, screen.MapPosition.Y + screen.MapPointSize * first.Mapsize, screen.MapPointSize, screen.MapPointSize).Contains(e.Location) && first.player1.getMapPosition(screen) != new Point(i, 0) && first.player2.getMapPosition(screen) != new Point(i, 0))
+                            else if (new RectangleF(screen.MapPosition.X + screen.MapPointSize * i, screen.MapPosition.Y + screen.MapPointSize * first.Mapsize, screen.MapPointSize, screen.MapPointSize).Contains(e.Location) && first.player1.getMapPosition(screen) != new Point(i, 0) && first.player2.getMapPosition(screen) != new Point(i, 0) && (first.dontPush.Y != i || first.dontPush.X == 0))
                             {
                                 push = false;
                                 column = i;
                                 timer1.Enabled = true;
                                 timer1.Interval = 50;
                                 first.files.player.Play();
+                                first.dontPush = new Point(0, i);
                                 //first.PullColumn(i, first.exchangeCard);
                                 //Refresh();
                                 pathMoving = true;

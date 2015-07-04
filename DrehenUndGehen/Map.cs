@@ -15,8 +15,9 @@ namespace DrehenUndGehen
          * Mapposition ist die Position der Rechten oberen Ecke auf dem Steuerelement
          * Mappointsize gibt an wieviele pixel in x und y-Richtung eine Kachel/Mappoint hat.
          */
- 
-		public int Mapsize { get; set; }
+        public Point dontPush { get; set; }
+		
+        public int Mapsize { get; set; }
 		public Mappoint[,] Board { get; set; }
 		public FileManager files { get; set; }
 		public Mappoint exchangeCard { get; set; }

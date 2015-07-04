@@ -354,21 +354,20 @@ namespace DrehenUndGehen
 			{
 				for (int j = 0; j < first.Mapsize; j++)
 				{
-                    if (i == 0 && j % 2 != 0 && first.player1.getMapPosition(screen) != new Point(j, first.Mapsize-1) && first.player2.getMapPosition(screen) != new Point(j, first.Mapsize-1))//obere Seite
+                    if (i == 0 && j % 2 != 0 && first.player1.getMapPosition(screen) != new Point(j, first.Mapsize - 1) && first.player2.getMapPosition(screen) != new Point(j, first.Mapsize - 1) && (first.dontPush.Y != j || first.dontPush.X == first.Mapsize-1))//obere Seite
 					{
-						Rectangle rec = new Rectangle(screen.MapPosition.X + j * x, screen.MapPosition.Y + i * x - x, x, x);
-						
-						if (rec.Contains(p))
-						{
-							g.DrawRectangle(penGreen, screen.MapPosition.X + j * x, screen.MapPosition.Y + i * x - x, x, x);
-						}
-						else
-						{
-							g.DrawRectangle(penRed, screen.MapPosition.X + j * x, screen.MapPosition.Y + i * x - x, x, x);
-						}
-						
+                        Rectangle rec = new Rectangle(screen.MapPosition.X + j * x, screen.MapPosition.Y + i * x - x, x, x);
+
+                        if (rec.Contains(p))
+                        {
+                            g.DrawRectangle(penGreen, screen.MapPosition.X + j * x, screen.MapPosition.Y + i * x - x, x, x);
+                        }
+                        else
+                        {
+                            g.DrawRectangle(penRed, screen.MapPosition.X + j * x, screen.MapPosition.Y + i * x - x, x, x);
+                        }						
 					}
-                    if (j == 0 && i % 2 != 0 && first.player1.getMapPosition(screen) != new Point(first.Mapsize-1, i) && first.player2.getMapPosition(screen) != new Point(first.Mapsize-1, i)) //linke Seite
+                    if (j == 0 && i % 2 != 0 && first.player1.getMapPosition(screen) != new Point(first.Mapsize - 1, i) && first.player2.getMapPosition(screen) != new Point(first.Mapsize - 1, i) && (first.dontPush.X != i || first.dontPush.Y == first.Mapsize-1)) //linke Seite
 					{
 						Rectangle rec = new Rectangle(screen.MapPosition.X + j * x - x, screen.MapPosition.Y + i * x, x, x);
 						if (rec.Contains(p))
@@ -381,7 +380,7 @@ namespace DrehenUndGehen
 						}
 
 					}
-                    if (i == first.Mapsize - 1 && j % 2 != 0 && first.player1.getMapPosition(screen) != new Point(j, 0) && first.player2.getMapPosition(screen) != new Point(j, 0)) //untere Seite
+                    if (i == first.Mapsize - 1 && j % 2 != 0 && first.player1.getMapPosition(screen) != new Point(j, 0) && first.player2.getMapPosition(screen) != new Point(j, 0) && (first.dontPush.Y != j || first.dontPush.X == 0)) //untere Seite
 					{
 						Rectangle rec = new Rectangle(screen.MapPosition.X + j * x, screen.MapPosition.Y + i * x + x, x, x);
 						if (rec.Contains(p))
@@ -394,7 +393,7 @@ namespace DrehenUndGehen
 						}
 
 					}
-                    if (j == first.Mapsize - 1 && i % 2 != 0 && first.player1.getMapPosition(screen) != new Point(0, i) && first.player2.getMapPosition(screen) != new Point(0, i)) //rechte Seite
+                    if (j == first.Mapsize - 1 && i % 2 != 0 && first.player1.getMapPosition(screen) != new Point(0, i) && first.player2.getMapPosition(screen) != new Point(0, i) && (first.dontPush.X != i || first.dontPush.Y == 0)) //rechte Seite
 					{
 						Rectangle rec = new Rectangle(screen.MapPosition.X + j * x + x, screen.MapPosition.Y + i * x, x, x);
 						if (rec.Contains(p))
