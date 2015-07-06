@@ -24,6 +24,9 @@ namespace DrehenUndGehen
 		public Rectangle propToFindFrame;
 		public Rectangle Background;
 		public Rectangle Button;
+        public Rectangle Pointsplayer1;
+        public Rectangle Pointsplayer2;
+        public Point Playeraction; 
 		public int MapPointSize { get; set; }
 		
 
@@ -57,12 +60,14 @@ namespace DrehenUndGehen
 				MapPointSize = Convert.ToInt32(ScreenHight * 0.5 / first.Mapsize);
 			}
 			MapPosition = new Rectangle(Convert.ToInt32(UserMenu.X * 0.5)-(Convert.ToInt32(first.Mapsize*MapPointSize*0.5)), (ScreenHight - first.Mapsize * MapPointSize /*first.MapPointSize*/) / 2, first.Mapsize * MapPointSize/* first.MapPointSize*/, first.Mapsize * MapPointSize);
-			ExchangeCard = new Rectangle(UserMenu.X + ((ScreenWidth - UserMenu.X) / 2) - MapPointSize / 2, MapPosition.Y, MapPointSize, MapPointSize);
+			ExchangeCard = new Rectangle(UserMenu.X + ((ScreenWidth - UserMenu.X) / 2) - MapPointSize / 2, MapPosition.Y-MapPointSize, MapPointSize, MapPointSize);
 			Button = new Rectangle(ExchangeCard.X, ExchangeCard.Y + Convert.ToInt32(MapPointSize*1.5), MapPointSize, MapPointSize);
 			ExchangeCardFrame = new Rectangle(UserMenu.X + ((ScreenWidth - UserMenu.X) / 2) - MapPointSize,ExchangeCard.Y - MapPointSize / 2, MapPointSize * 2, MapPointSize * 2);
-			propToFind = new Rectangle(UserMenu.X + ((ScreenWidth - UserMenu.X) / 2) - MapPointSize / 2, ScreenHight / 2, MapPointSize, MapPointSize);
-			propToFindFrame = new Rectangle(propToFind.X -(MapPointSize/2), propToFind.Y - (MapPointSize/2), MapPointSize* 2, MapPointSize * 2);
-
+			propToFind = new Rectangle(UserMenu.X + ((ScreenWidth - UserMenu.X) / 2) - MapPointSize / 2, ScreenHight / 2-MapPointSize, MapPointSize, MapPointSize);
+            propToFindFrame = new Rectangle(propToFind.X - (MapPointSize / 2), propToFind.Y - (MapPointSize / 2) , MapPointSize * 2, MapPointSize * 2);
+            Pointsplayer1 = new Rectangle(UserMenu.X + ((ScreenWidth - UserMenu.X) / 2) - MapPointSize * 2, propToFind.Y + MapPointSize * 5, MapPointSize, MapPointSize);
+            Pointsplayer2 = new Rectangle(UserMenu.X + ((ScreenWidth - UserMenu.X) / 2) - MapPointSize / 2 + MapPointSize, propToFind.Y + MapPointSize * 5, MapPointSize, MapPointSize);
+            Playeraction = new Point(UserMenu.X + ((ScreenWidth - UserMenu.X) / 2) - MapPointSize*2, propToFind.Y + MapPointSize * 3);
 
 
 		}

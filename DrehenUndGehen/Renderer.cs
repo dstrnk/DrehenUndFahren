@@ -24,6 +24,9 @@ namespace DrehenUndGehen
 		public SolidBrush brush1  {get; set;}
 		public SolidBrush brush2 { get; set; }
 		private Random ran;
+        public string pointsplayer1;
+        public string pointsplayer2;
+        public string Action;
 		
 
 
@@ -31,15 +34,18 @@ namespace DrehenUndGehen
         {
             first   = new Map();          
         }
-        public Renderer(Map map ,Graphics g,Gamescreen screen)
+        public Renderer(Map map ,Graphics g,Gamescreen screen,Label label1)
         {
             this.first = map;           
             this.g = g;
 			this.screen = screen;
-			this.brush = new TextureBrush(first.files.menuBrush, WrapMode.TileFlipXY);
+			this.brush = new TextureBrush(first.files.menuBrush,WrapMode.TileFlipXY);
 			this.brush1= new SolidBrush(Color.PaleVioletRed);
 			this.brush2 = new SolidBrush(Color.PaleGreen);
 			this.ran = new Random();
+            this.pointsplayer1 = first.player1.collectedItems.ToString();
+            this.pointsplayer2 = first.player2.collectedItems.ToString();
+            this.Action = label1.Text;
 			
 			
         }
@@ -418,6 +424,7 @@ namespace DrehenUndGehen
 		g.DrawImage(first.files.menuFrame, screen.UserMenu.X-2, screen.UserMenu.Y, screen.ScreenWidth - screen.UserMenu.X, screen.ScreenHight);
 		g.DrawImage(first.files.exchangCardFrame, screen.ExchangeCardFrame);
 		g.DrawImage(first.files.exchangCardFrame, screen.propToFindFrame);
+   
 		//g.DrawImage(first.files.Buttonsettings, screen.propToFindFrame.X, screen.propToFindFrame.Y + screen.MapPointSize, screen.MapPointSize, screen.MapPointSize);
 		if (mouseover == true)
 		{
@@ -455,6 +462,14 @@ namespace DrehenUndGehen
 		
 
 	}
+
+    public void drawPoints()
+    {
+        g.DrawString("P1: "+pointsplayer1, new Font("Showcard Gothic",screen.MapPointSize/2), Brushes.Black, screen.Pointsplayer1.X, screen.Pointsplayer1.Y);
+        g.DrawString("P2: "+pointsplayer2, new Font("Showcard Gothic", screen.MapPointSize/2), Brushes.Black, screen.Pointsplayer2.X, screen.Pointsplayer2.Y);
+        g.DrawString(Action, new Font("Showcard Gothic", screen.MapPointSize / 2), Brushes.DarkRed,screen.Playeraction);
+        
+    }
 
 
 

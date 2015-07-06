@@ -49,8 +49,8 @@ namespace DrehenUndGehen
 
 			screen = new Gamescreen(first, this);
 			first.fillMap();			
-			first.addPropToMap(first);			
-					            //Fenster wird auto Maximiert
+			first.addPropToMap(first);
+            //Fenster wird auto Maximiert
 			this.DoubleBuffered = true;                                     //Reduziert flimmern hierdurch kann allerdings nur im on_paint event gezeichnet werden    
             this.AllowDrop = true;											//für Drag and Drop bin mir aber nicht sicher ob es Programmintern überhaupt gebraucht wird
 			p = new Point(screen.ExchangeCard.X, screen.ExchangeCard.Y);
@@ -62,22 +62,23 @@ namespace DrehenUndGehen
 
 		private void Form1_Load(object sender, EventArgs e)
 		{
+
             first.player1.setPositionPixel(screen);
             first.player1.playerId = 1;
             first.player2.setPositionPixel(screen);
             first.player2.playerId = 2;
-
+            label1.Visible = false;
             int startplayer = 1;
             if (startplayer == 1)
             {
-                label1.Text = "Spieler 1 schiebt";
+                label1.Text = "P1 schiebt";
                 first.player1.pushAviable = true;
                 activePlayer = first.player1;
 
             }
             else
             {
-                label1.Text = "Spieler 2 schiebt";
+                label1.Text = "P2 schiebt";
                 first.player2.pushAviable = true;
                 activePlayer = first.player2;
             }
@@ -90,10 +91,11 @@ namespace DrehenUndGehen
 			
 			
 			
-			rend = new Renderer(first, g,screen);
+			rend = new Renderer(first, g,screen,label1);
 			rend.drawBackground(mouseover);
-			
+            rend.drawPoints();
             rend.drawPropToFind();
+           
 
 
 			if (moving == true)
@@ -114,6 +116,7 @@ namespace DrehenUndGehen
 			{
 				rend.drawMap(pixeloffset,push,row,column);
 				rend.drawExchangeCard(pixeloffset,push,row,column);
+
 
                 //Spieler1 verschieben
                 if (first.player1.getMapPosition(screen).Y == row && push)
@@ -285,11 +288,11 @@ namespace DrehenUndGehen
                 activePlayer.pushAviable = true;
                 if (activePlayer.playerId == 1)
                 {
-                    label1.Text = "Spieler 1 schiebt";
+                    label1.Text = "P1 schiebt";
                 }
                 else
                 {
-                    label1.Text = "Spieler 2 schiebt";
+                    label1.Text = "P2 schiebt";
                 }
             }
             else
@@ -298,11 +301,11 @@ namespace DrehenUndGehen
                 activePlayer.pushAviable = false;
                 if (activePlayer.playerId == 1)
                 {
-                    label1.Text = "Spieler 1 geht";
+                    label1.Text = "P1 geht";
                 }
                 else
                 {
-                    label1.Text = "Spieler 2 geht";
+                    label1.Text = "P2 geht";
                 }
             }
    
@@ -310,11 +313,12 @@ namespace DrehenUndGehen
 
         private void Form1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            // Mit Doppelklick die Position der exchange Card ändern
+          /* // Mit Doppelklick die Position der exchange Card ändern
 			if (new Rectangle(p.X, p.Y, screen.MapPointSize, screen.MapPointSize).Contains(e.Location))
             {
                 first.switchPosition(first.exchangeCard);
             }
+           */
         }
 
 		private void timer1_Tick(object sender, EventArgs e)
@@ -428,6 +432,7 @@ namespace DrehenUndGehen
 			screen = new Gamescreen(first, this);
             first.player1.setPositionPixel(screen);
             first.player2.setPositionPixel(screen);
+            
             Refresh();
 		}
 
@@ -438,6 +443,7 @@ namespace DrehenUndGehen
             if (Math.Abs(activePlayer.counterX) == pixelCounter || Math.Abs(activePlayer.counterY) == pixelCounter)
             {
                 playerTimer.Enabled = false;
+                ;
                 activePlayer.counterX = 0;
                 activePlayer.counterY = 0;        
                 //playerTimer.Stop();
@@ -451,16 +457,19 @@ namespace DrehenUndGehen
                     if (activePlayer.playerId == 1)
                     {
                         activePlayer = first.player2;
-                        label1.Text = "Spieler 2 schiebt";
+                        label1.Text = "P2 schiebt";
+                        
                     }
                     else
                     {
                         activePlayer = first.player1;
-                        label1.Text = "Spieler 1 schiebt";
+                        label1.Text = "P1 schiebt";
+                        
                     }
                     foundProp(activePlayer.getMapPosition(screen));
                     activePlayer.pushAviable = true;                
-                }           
+                }
+                Invalidate(new Rectangle(screen.Playeraction.X, screen.Playeraction.Y, 500, 200));
             }
             else
             {
@@ -474,8 +483,10 @@ namespace DrehenUndGehen
 
                 activePlayer.shownBitmap = activePlayer.usedAnimation[Convert.ToInt32(nr / 25)];
 
-                Invalidate(new Rectangle(activePlayer.positionPixel.X + direction.X, activePlayer.positionPixel.Y, screen.MapPointSize, screen.MapPointSize));  
+                Invalidate(new Rectangle(activePlayer.positionPixel.X + direction.X, activePlayer.positionPixel.Y, screen.MapPointSize, screen.MapPointSize));
+               
             }
+            
             
         }
 
@@ -485,8 +496,7 @@ namespace DrehenUndGehen
             if (first.Board[p.X, p.Y].propname == first.searchProp)
             {
                 activePlayer.collectedItems++;  //eingesammelter Gegenstand wird dem Spieler gutgeschrieben
-                label2.Text = first.player1.collectedItems.ToString();      //Anzeige der eingesammelten Gegenständen
-                label3.Text = first.player2.collectedItems.ToString();
+               
 
 
                 first.usedProps.Remove(first.Board[p.X, p.Y].propname);

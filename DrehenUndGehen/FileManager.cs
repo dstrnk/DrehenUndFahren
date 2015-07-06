@@ -102,7 +102,7 @@ namespace DrehenUndGehen
 			background4 = new Bitmap(path + @"\background4.bmp");
 			background5 = new Bitmap(path + @"\background5.bmp");
 
-			menuBrush = new Bitmap(path + @"\stonebrush.bmp");
+			menuBrush = new Bitmap(path + @"\stonebrush.png");
 			menuFrame = new Bitmap(path + @"\menuframe.png");
 
 			topright = new Bitmap(path + "\\topright.png");

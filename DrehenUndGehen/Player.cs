@@ -31,7 +31,7 @@ namespace DrehenUndGehen
         public Player(int id, Point startPosition)
         {
             int playerSizePng = 32;
-
+            collectedItems = 0;
             playerMoving = false;
             pushAviable = false;
             moveAviable = false;
