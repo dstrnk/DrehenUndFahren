@@ -24,6 +24,7 @@ namespace DrehenUndGehen
             playerOne = p1;
             playerTwo = p2;
             anzItems = 0;
+            this.rbviele.Checked = true;
         }
 
         private void MapEditor_Load(object sender, EventArgs e)
@@ -117,6 +118,8 @@ namespace DrehenUndGehen
         {
             Application.Exit();
         }
+
+     
 
     }
 }

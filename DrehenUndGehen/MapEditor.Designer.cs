@@ -36,9 +36,10 @@
             this.btnStartTheGame = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.rbviele = new System.Windows.Forms.RadioButton();
-            this.rbnormal = new System.Windows.Forms.RadioButton();
             this.rbwenige = new System.Windows.Forms.RadioButton();
+            this.rbnormal = new System.Windows.Forms.RadioButton();
+            this.rbviele = new System.Windows.Forms.RadioButton();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.pbMap)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -61,9 +62,10 @@
             this.rbEinfach.FlatAppearance.CheckedBackColor = System.Drawing.Color.Transparent;
             this.rbEinfach.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.rbEinfach.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.rbEinfach.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbEinfach.Location = new System.Drawing.Point(49, 84);
             this.rbEinfach.Name = "rbEinfach";
-            this.rbEinfach.Size = new System.Drawing.Size(95, 17);
+            this.rbEinfach.Size = new System.Drawing.Size(110, 17);
             this.rbEinfach.TabIndex = 1;
             this.rbEinfach.TabStop = true;
             this.rbEinfach.Text = "Einfach (7 X 7)";
@@ -95,9 +97,10 @@
             this.rbMittel.FlatAppearance.CheckedBackColor = System.Drawing.Color.Transparent;
             this.rbMittel.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.rbMittel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.rbMittel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbMittel.Location = new System.Drawing.Point(49, 132);
             this.rbMittel.Name = "rbMittel";
-            this.rbMittel.Size = new System.Drawing.Size(84, 17);
+            this.rbMittel.Size = new System.Drawing.Size(98, 17);
             this.rbMittel.TabIndex = 3;
             this.rbMittel.TabStop = true;
             this.rbMittel.Text = "Mittel (9 X 9)";
@@ -113,6 +116,7 @@
             this.btnStartTheGame.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnStartTheGame.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnStartTheGame.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStartTheGame.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStartTheGame.Location = new System.Drawing.Point(454, 356);
             this.btnStartTheGame.Name = "btnStartTheGame";
             this.btnStartTheGame.Size = new System.Drawing.Size(116, 34);
@@ -126,62 +130,81 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(23, 16);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(155, 13);
+            this.label1.Size = new System.Drawing.Size(184, 13);
             this.label1.TabIndex = 7;
             this.label1.Text = "Anzahl der zu suchenden Items";
             // 
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("groupBox1.BackgroundImage")));
+            this.groupBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.groupBox1.Controls.Add(this.rbwenige);
             this.groupBox1.Controls.Add(this.rbnormal);
             this.groupBox1.Controls.Add(this.rbviele);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(49, 276);
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(49, 273);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(200, 100);
+            this.groupBox1.Size = new System.Drawing.Size(200, 103);
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Items";
-            // 
-            // rbviele
-            // 
-            this.rbviele.AutoSize = true;
-            this.rbviele.Location = new System.Drawing.Point(26, 33);
-            this.rbviele.Name = "rbviele";
-            this.rbviele.Size = new System.Drawing.Size(48, 17);
-            this.rbviele.TabIndex = 8;
-            this.rbviele.TabStop = true;
-            this.rbviele.Text = "Viele";
-            this.rbviele.UseVisualStyleBackColor = true;
-            // 
-            // rbnormal
-            // 
-            this.rbnormal.AutoSize = true;
-            this.rbnormal.Location = new System.Drawing.Point(26, 54);
-            this.rbnormal.Name = "rbnormal";
-            this.rbnormal.Size = new System.Drawing.Size(58, 17);
-            this.rbnormal.TabIndex = 9;
-            this.rbnormal.TabStop = true;
-            this.rbnormal.Text = "Normal";
-            this.rbnormal.UseVisualStyleBackColor = true;
             // 
             // rbwenige
             // 
             this.rbwenige.AutoSize = true;
             this.rbwenige.Location = new System.Drawing.Point(26, 77);
             this.rbwenige.Name = "rbwenige";
-            this.rbwenige.Size = new System.Drawing.Size(62, 17);
+            this.rbwenige.Size = new System.Drawing.Size(68, 17);
             this.rbwenige.TabIndex = 10;
             this.rbwenige.TabStop = true;
             this.rbwenige.Text = "Wenige";
             this.rbwenige.UseVisualStyleBackColor = true;
+            // 
+            // rbnormal
+            // 
+            this.rbnormal.AutoSize = true;
+            this.rbnormal.Location = new System.Drawing.Point(26, 54);
+            this.rbnormal.Name = "rbnormal";
+            this.rbnormal.Size = new System.Drawing.Size(64, 17);
+            this.rbnormal.TabIndex = 9;
+            this.rbnormal.TabStop = true;
+            this.rbnormal.Text = "Normal";
+            this.rbnormal.UseVisualStyleBackColor = true;
+            // 
+            // rbviele
+            // 
+            this.rbviele.AutoSize = true;
+            this.rbviele.Location = new System.Drawing.Point(26, 33);
+            this.rbviele.Name = "rbviele";
+            this.rbviele.Size = new System.Drawing.Size(53, 17);
+            this.rbviele.TabIndex = 8;
+            this.rbviele.TabStop = true;
+            this.rbviele.Text = "Viele";
+            this.rbviele.UseVisualStyleBackColor = true;
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.BackColor = System.Drawing.Color.Transparent;
+            this.radioButton1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("radioButton1.BackgroundImage")));
+            this.radioButton1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.radioButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButton1.Location = new System.Drawing.Point(49, 191);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(123, 17);
+            this.radioButton1.TabIndex = 11;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "Schwer (11 X 11)";
+            this.radioButton1.UseVisualStyleBackColor = false;
             // 
             // MapEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(582, 402);
+            this.Controls.Add(this.radioButton1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnStartTheGame);
             this.Controls.Add(this.rbMittel);
@@ -214,5 +237,6 @@
         private System.Windows.Forms.RadioButton rbwenige;
         private System.Windows.Forms.RadioButton rbnormal;
         private System.Windows.Forms.RadioButton rbviele;
+        private System.Windows.Forms.RadioButton radioButton1;
     }
 }
