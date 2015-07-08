@@ -215,7 +215,7 @@ namespace DrehenUndGehen
                                 push = true;
                                 row = i;
                                 timer1.Enabled = true;
-                                timer1.Interval = 50;
+                                timer1.Interval =25;
                                 first.files.player.Play();
                                 //timer1.Start();
                                 //first.PushRow(i, first.exchangeCard);
@@ -228,7 +228,7 @@ namespace DrehenUndGehen
                                 push = true;
                                 column = i;
                                 timer1.Enabled = true;
-                                timer1.Interval = 50;
+                                timer1.Interval = 25;
                                 first.files.player.Play();
 
                                 //first.PushColumn(i, first.exchangeCard);
@@ -241,7 +241,7 @@ namespace DrehenUndGehen
                                 push = false;
                                 row = i;
                                 timer1.Enabled = true;
-                                timer1.Interval = 50;
+                                timer1.Interval = 25;
                                 first.files.player.Play();
                                 //first.PullRow(i, first.exchangeCard);
                                 //Refresh();
@@ -253,7 +253,7 @@ namespace DrehenUndGehen
                                 push = false;
                                 column = i;
                                 timer1.Enabled = true;
-                                timer1.Interval = 50;
+                                timer1.Interval = 25;
                                 first.files.player.Play();
                                 first.dontPush = new Point(0, i);
                                 //first.PullColumn(i, first.exchangeCard);
@@ -332,7 +332,7 @@ namespace DrehenUndGehen
 
 		private void timer1_Tick(object sender, EventArgs e)
 		{
-			pixeloffset += 2;
+			pixeloffset += 3;
 			if (pixeloffset >= screen.MapPointSize)
 			{
 				first.files.player.Stop();
