@@ -13,6 +13,12 @@ namespace DrehenUndGehen
 {
 	public partial class Form1 : Form
 	{
+        public int playerOneImage { get; set; }
+        public int playerTwoImage { get; set; }
+        public int mapSize { get; set; }
+        public int howManyItems { get; set; }
+        public String whoBegins { get; set; }
+
 		Graphics g;
 		Map first;
 		Renderer rend;
@@ -42,8 +48,13 @@ namespace DrehenUndGehen
 
         Player activePlayer;
 
-		public Form1()
+        public Form1(int size, int p1, int p2, int hmi, String wB)
 		{
+            playerTwoImage = p2;
+            playerOneImage = p1;
+            whoBegins = wB;
+            howManyItems = hmi;
+            mapSize = size;
 			InitializeComponent();
 			first = new Map(7);
 
