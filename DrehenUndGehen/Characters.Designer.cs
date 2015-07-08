@@ -126,6 +126,7 @@
             this.rbLordKnight.TabStop = true;
             this.rbLordKnight.Text = "Lord Knight";
             this.rbLordKnight.UseVisualStyleBackColor = false;
+            this.rbLordKnight.CheckedChanged += new System.EventHandler(this.rbLordKnight_CheckedChanged);
             // 
             // rbMarian
             // 

@@ -30,22 +30,23 @@ namespace DrehenUndGehen
             playerReady = 0;
 
             Player Knight = new Player(0, new Point(0,0));
-            LordKnight = Knight.getFrontBitmap();
+            LordKnight = new Bitmap(Knight.getFrontBitmap(), pbChar1.Width, pbChar1.Height);
+
 
             Player Woman = new Player(1, new Point(0, 0));
-            Marian = Woman.getFrontBitmap();
+            Marian = new Bitmap(Woman.getFrontBitmap(), pbChar2.Width, pbChar2.Height);
 
             Player Ninja = new Player(2, new Point(0, 0));
-            NinjaJustin = Ninja.getFrontBitmap();
+            NinjaJustin = new Bitmap(Ninja.getFrontBitmap(), pbChar3.Width, pbChar3.Height);
 
             Player Sir = new Player(3, new Point(0, 0));
-            SirDavid = Sir.getFrontBitmap();
+            SirDavid = new Bitmap(Sir.getFrontBitmap(), pbChar4.Width, pbChar4.Height);
 
             Player King = new Player(4, new Point(0, 0));
-            KingPatrick = King.getFrontBitmap();
+            KingPatrick = new Bitmap(King.getFrontBitmap(), pbChar5.Width, pbChar5.Height);
 
             Player Pope = new Player(5, new Point(0, 0));
-            PopeRoman = Pope.getFrontBitmap();            
+            PopeRoman = new Bitmap(Pope.getFrontBitmap(), pbChar6.Width, pbChar6.Height);            
                     
 
             fillPictureBoxes();
@@ -58,12 +59,12 @@ namespace DrehenUndGehen
 
         public void fillPictureBoxes()
         {
-            pbChar1.BackgroundImage = LordKnight;
-            pbChar2.BackgroundImage = Marian;
-            pbChar3.BackgroundImage = NinjaJustin;
-            pbChar4.BackgroundImage = SirDavid;
-            pbChar5.BackgroundImage = KingPatrick;
-            pbChar6.BackgroundImage = PopeRoman;
+            pbChar1.Image = LordKnight;
+            pbChar2.Image = Marian;
+            pbChar3.Image = NinjaJustin;
+            pbChar4.Image = SirDavid;
+            pbChar5.Image = KingPatrick;
+            pbChar6.Image = PopeRoman;
 
         }
 
@@ -92,14 +93,16 @@ namespace DrehenUndGehen
         private void btnbereit_Click_1(object sender, EventArgs e)
         {
             playerReady++;
-
+            Bitmap temp;
             if (playerReady == 1)
             {
                 if (rbLordKnight.Checked == true)
                 {
-
+                    //Wird geladen und dann der schwarze Hintergrund ausgeblendet
                     rbLordKnight.Enabled = false;
-                    pbChar1.BackgroundImage = makePlayerImageGrey(LordKnight);
+                    temp = makePlayerImageGrey(LordKnight);
+                    temp.MakeTransparent(Color.Black);
+                    pbChar1.Image = temp;
                     playerOne = 2;
 
 
@@ -109,7 +112,9 @@ namespace DrehenUndGehen
                 {
 
                     rbMarian.Enabled = false;
-                    pbChar2.BackgroundImage = makePlayerImageGrey(Marian);
+                    temp = makePlayerImageGrey(Marian);
+                    temp.MakeTransparent(Color.Black);
+                    pbChar2.Image = temp;
                     playerOne = 5;
 
                 }
@@ -117,7 +122,9 @@ namespace DrehenUndGehen
                 {
 
                     rbNinjaJustin.Enabled = false;
-                    pbChar3.BackgroundImage = makePlayerImageGrey(NinjaJustin);
+                    temp = makePlayerImageGrey(NinjaJustin);
+                    temp.MakeTransparent(Color.Black);
+                    pbChar3.Image = temp;
                     playerOne = 6;
 
                 }
@@ -125,7 +132,9 @@ namespace DrehenUndGehen
                 {
 
                     rbSirDavid.Enabled = false;
-                    pbChar4.BackgroundImage = makePlayerImageGrey(SirDavid);
+                    temp = makePlayerImageGrey(SirDavid);
+                    temp.MakeTransparent(Color.Black);
+                    pbChar4.Image = temp;
                     playerOne = 8;
 
                 }
@@ -133,7 +142,9 @@ namespace DrehenUndGehen
                 {
 
                     rbKingPatrick.Enabled = false;
-                    pbChar5.BackgroundImage = makePlayerImageGrey(KingPatrick);
+                    temp = makePlayerImageGrey(KingPatrick);
+                    temp.MakeTransparent(Color.Black);
+                    pbChar5.Image = temp;
                     playerOne = 3;
 
                 }
@@ -141,7 +152,9 @@ namespace DrehenUndGehen
                 {
 
                     rbPopeRoman.Enabled = false;
-                    pbChar6.BackgroundImage = makePlayerImageGrey(PopeRoman);
+                    temp = makePlayerImageGrey(PopeRoman);
+                    temp.MakeTransparent(Color.Black);
+                    pbChar6.Image = temp;
                     playerOne = 1;
 
 
@@ -168,14 +181,19 @@ namespace DrehenUndGehen
                 {
 
                     rbLordKnight.Enabled = false;
-                    pbChar1.Image = makePlayerImageGrey(LordKnight);
+                    temp = makePlayerImageGrey(LordKnight);
+                    temp.MakeTransparent(Color.Black);
+                    pbChar1.Image = temp;
                     playerTwo = 2;
 
                 }
                 else if (rbMarian.Checked == true)
                 {
                     rbMarian.Enabled = false;
-                    pbChar2.Image = makePlayerImageGrey(Marian);
+                    temp = makePlayerImageGrey(Marian);
+                    temp.MakeTransparent(Color.Black);
+                    pbChar2.Image = temp;
+             
                     playerTwo = 5;
 
                 }
@@ -183,28 +201,36 @@ namespace DrehenUndGehen
                 {
 
                     rbNinjaJustin.Enabled = false;
-                    pbChar3.Image = makePlayerImageGrey(NinjaJustin);
+                    temp = makePlayerImageGrey(NinjaJustin);
+                    temp.MakeTransparent(Color.Black);
+                    pbChar3.Image = temp;
                     playerTwo = 6;
                 }
                 else if (rbSirDavid.Checked == true)
                 {
 
                     rbSirDavid.Enabled = false;
-                    pbChar4.Image = makePlayerImageGrey(SirDavid);
+                    temp = makePlayerImageGrey(SirDavid);
+                    temp.MakeTransparent(Color.Black);
+                    pbChar4.Image = temp;
                     playerTwo = 8;
                 }
                 else if (rbKingPatrick.Checked == true)
                 {
 
                     rbKingPatrick.Enabled = false;
-                    pbChar5.Image = makePlayerImageGrey(KingPatrick);
+                    temp = makePlayerImageGrey(KingPatrick);
+                    temp.MakeTransparent(Color.Black);
+                    pbChar5.Image = temp;
                     playerTwo = 3;
                 }
                 else if (rbPopeRoman.Checked == true)
                 {
 
                     rbPopeRoman.Enabled = false;
-                    pbChar6.Image = makePlayerImageGrey(PopeRoman);
+                    temp = makePlayerImageGrey(PopeRoman);
+                    temp.MakeTransparent(Color.Black);
+                    pbChar6.Image = temp;
                     playerTwo = 1;
 
 
@@ -230,6 +256,11 @@ namespace DrehenUndGehen
         private void Characters_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void rbLordKnight_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
 
 
