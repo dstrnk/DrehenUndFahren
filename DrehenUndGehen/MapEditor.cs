@@ -31,25 +31,7 @@ namespace DrehenUndGehen
             this.BackgroundImage = new Bitmap("background4.bmp");
         }
 
-        private void btnPlus_Click(object sender, EventArgs e)
-        {
-            if (anzItems<30)
-            {
-              anzItems++;
-            }
-
-            lblItems.Text = anzItems.ToString();
-        }
-
-        private void btnMinus_Click(object sender, EventArgs e)
-        {
-            if (anzItems > 1)
-            {
-                anzItems--;
-            }
-
-            lblItems.Text = anzItems.ToString();
-        }
+ 
 
         private void btnNext_Click(object sender, EventArgs e)
         {
@@ -84,6 +66,18 @@ namespace DrehenUndGehen
             else if (rbSchwer.Checked)
             {
                 mapSize = 11;
+            }
+            if (rbviele.Checked == true)
+            {
+                anzItems = 3;
+            }
+            else if(rbwenige.Checked == true)
+            {
+                anzItems = 8;
+            }
+            else if (rbnormal.Checked == true)
+            {
+                anzItems = 5;
             }
 
             Form1 game = new Form1(mapSize, playerOne, playerTwo, anzItems, whoBegins);

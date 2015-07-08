@@ -33,12 +33,14 @@
             this.rbEinfach = new System.Windows.Forms.RadioButton();
             this.rbSchwer = new System.Windows.Forms.RadioButton();
             this.rbMittel = new System.Windows.Forms.RadioButton();
-            this.lblItems = new System.Windows.Forms.Label();
-            this.btnPlus = new System.Windows.Forms.Button();
-            this.btnMinus = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.btnStartTheGame = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.rbviele = new System.Windows.Forms.RadioButton();
+            this.rbnormal = new System.Windows.Forms.RadioButton();
+            this.rbwenige = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.pbMap)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // pbMap
@@ -102,44 +104,6 @@
             this.rbMittel.UseVisualStyleBackColor = false;
             this.rbMittel.CheckedChanged += new System.EventHandler(this.rbMittel_CheckedChanged);
             // 
-            // lblItems
-            // 
-            this.lblItems.AutoSize = true;
-            this.lblItems.Location = new System.Drawing.Point(247, 285);
-            this.lblItems.Name = "lblItems";
-            this.lblItems.Size = new System.Drawing.Size(13, 13);
-            this.lblItems.TabIndex = 4;
-            this.lblItems.Text = "0";
-            // 
-            // btnPlus
-            // 
-            this.btnPlus.Location = new System.Drawing.Point(266, 268);
-            this.btnPlus.Name = "btnPlus";
-            this.btnPlus.Size = new System.Drawing.Size(23, 23);
-            this.btnPlus.TabIndex = 5;
-            this.btnPlus.Text = "+";
-            this.btnPlus.UseVisualStyleBackColor = true;
-            this.btnPlus.Click += new System.EventHandler(this.btnPlus_Click);
-            // 
-            // btnMinus
-            // 
-            this.btnMinus.Location = new System.Drawing.Point(266, 297);
-            this.btnMinus.Name = "btnMinus";
-            this.btnMinus.Size = new System.Drawing.Size(23, 23);
-            this.btnMinus.TabIndex = 6;
-            this.btnMinus.Text = "-";
-            this.btnMinus.UseVisualStyleBackColor = true;
-            this.btnMinus.Click += new System.EventHandler(this.btnMinus_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(80, 285);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(155, 13);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "Anzahl der zu suchenden Items";
-            // 
             // btnStartTheGame
             // 
             this.btnStartTheGame.BackColor = System.Drawing.Color.Transparent;
@@ -157,16 +121,69 @@
             this.btnStartTheGame.UseVisualStyleBackColor = false;
             this.btnStartTheGame.Click += new System.EventHandler(this.btnNext_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(23, 16);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(155, 13);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Anzahl der zu suchenden Items";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox1.Controls.Add(this.rbwenige);
+            this.groupBox1.Controls.Add(this.rbnormal);
+            this.groupBox1.Controls.Add(this.rbviele);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Location = new System.Drawing.Point(49, 276);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(200, 100);
+            this.groupBox1.TabIndex = 9;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Items";
+            // 
+            // rbviele
+            // 
+            this.rbviele.AutoSize = true;
+            this.rbviele.Location = new System.Drawing.Point(26, 33);
+            this.rbviele.Name = "rbviele";
+            this.rbviele.Size = new System.Drawing.Size(48, 17);
+            this.rbviele.TabIndex = 8;
+            this.rbviele.TabStop = true;
+            this.rbviele.Text = "Viele";
+            this.rbviele.UseVisualStyleBackColor = true;
+            // 
+            // rbnormal
+            // 
+            this.rbnormal.AutoSize = true;
+            this.rbnormal.Location = new System.Drawing.Point(26, 54);
+            this.rbnormal.Name = "rbnormal";
+            this.rbnormal.Size = new System.Drawing.Size(58, 17);
+            this.rbnormal.TabIndex = 9;
+            this.rbnormal.TabStop = true;
+            this.rbnormal.Text = "Normal";
+            this.rbnormal.UseVisualStyleBackColor = true;
+            // 
+            // rbwenige
+            // 
+            this.rbwenige.AutoSize = true;
+            this.rbwenige.Location = new System.Drawing.Point(26, 77);
+            this.rbwenige.Name = "rbwenige";
+            this.rbwenige.Size = new System.Drawing.Size(62, 17);
+            this.rbwenige.TabIndex = 10;
+            this.rbwenige.TabStop = true;
+            this.rbwenige.Text = "Wenige";
+            this.rbwenige.UseVisualStyleBackColor = true;
+            // 
             // MapEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(582, 402);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnStartTheGame);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.btnMinus);
-            this.Controls.Add(this.btnPlus);
-            this.Controls.Add(this.lblItems);
             this.Controls.Add(this.rbMittel);
             this.Controls.Add(this.rbSchwer);
             this.Controls.Add(this.rbEinfach);
@@ -178,6 +195,8 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MapEditor_FormClosed);
             this.Load += new System.EventHandler(this.MapEditor_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbMap)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -189,10 +208,11 @@
         private System.Windows.Forms.RadioButton rbEinfach;
         private System.Windows.Forms.RadioButton rbSchwer;
         private System.Windows.Forms.RadioButton rbMittel;
-        private System.Windows.Forms.Label lblItems;
-        private System.Windows.Forms.Button btnPlus;
-        private System.Windows.Forms.Button btnMinus;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnStartTheGame;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton rbwenige;
+        private System.Windows.Forms.RadioButton rbnormal;
+        private System.Windows.Forms.RadioButton rbviele;
     }
 }

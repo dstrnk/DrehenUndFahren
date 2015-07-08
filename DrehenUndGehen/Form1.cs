@@ -53,10 +53,10 @@ namespace DrehenUndGehen
             playerTwoImage = p2;
             playerOneImage = p1;
             whoBegins = wB;
-            howManyItems = hmi;
+            
             mapSize = size;
 			InitializeComponent();
-			first = new Map(7);
+			first = new Map(size,hmi);
 
 			screen = new Gamescreen(first, this);
 			first.fillMap();			

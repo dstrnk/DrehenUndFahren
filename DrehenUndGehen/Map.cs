@@ -21,8 +21,8 @@ namespace DrehenUndGehen
 		public Mappoint[,] Board { get; set; }
 		public FileManager files { get; set; }
 		public Mappoint exchangeCard { get; set; }
-		
-		
+
+        int Randomwert { get; set; }
 		//public int MappositionX { get; set; }
 		//public int MappositionY { get; set; }
 		//public int MapPointSize { get; set; }
@@ -53,7 +53,7 @@ namespace DrehenUndGehen
 		}
 
 
-		public Map(int Mapsize /*int MapPointSize*/)
+		public Map(int Mapsize,int Anzahlitems /*int MapPointSize*/)
 		{
 			this.Mapsize = Mapsize;
 			Board = new Mappoint[Mapsize, Mapsize];
@@ -68,7 +68,7 @@ namespace DrehenUndGehen
 			ran = new Random();
             player1 = new Player(4, new Point(0,0));
             player2 = new Player(1, new Point(Mapsize-1,Mapsize-1));
-         
+            this.Randomwert = Anzahlitems;
 		}
 
         /*
@@ -348,7 +348,7 @@ namespace DrehenUndGehen
 					for (int j = 0; j < first.Mapsize; j++)
 					{
 
-                        if (ran.Next(3) == 1 && indexListe < files.Proplist.Count && (i != 0 || j != 0) && (i != first.Mapsize -1 || j != first.Mapsize -1)) //Items werden nicht auf die Startposition der Spieler generiert 
+                        if (ran.Next(this.Randomwert) == 1 && indexListe < files.Proplist.Count && (i != 0 || j != 0) && (i != first.Mapsize -1 || j != first.Mapsize -1)) //Items werden nicht auf die Startposition der Spieler generiert 
 						{
                             Board[i, j].propname = keys[indexListe];
                             Board[i, j].proppic = files.Proplist[keys[indexListe]];
