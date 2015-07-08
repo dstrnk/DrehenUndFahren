@@ -171,7 +171,9 @@
             this.Controls.Add(this.rbSchwer);
             this.Controls.Add(this.rbEinfach);
             this.Controls.Add(this.pbMap);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "MapEditor";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MapEditor";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MapEditor_FormClosed);
             this.Load += new System.EventHandler(this.MapEditor_Load);

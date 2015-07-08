@@ -26,7 +26,7 @@ namespace DrehenUndGehen
         public Characters()
         {
             InitializeComponent();
-
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             playerReady = 0;
 
             Player Knight = new Player(0, new Point(0,0));
@@ -87,10 +87,7 @@ namespace DrehenUndGehen
             return bmp;
         }
 
-        private void Characters_Shown(object sender, EventArgs e)
-        {
-            MessageBox.Show("Spieler 1 bitte wählen Sie ihre Spielfigur und bestätigen Sie mit OK");
-        }
+        
 
         private void btnbereit_Click_1(object sender, EventArgs e)
         {
@@ -153,7 +150,7 @@ namespace DrehenUndGehen
                
                 btnbereit.Text = "Spieler 2 ready!";
 
-                MessageBox.Show("Nun wählen Sie Spieler 2 und bestätigen durch den Button !");
+                
 
                 if (rbLordKnight.Checked == true)
                 {

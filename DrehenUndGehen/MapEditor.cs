@@ -20,7 +20,7 @@ namespace DrehenUndGehen
         public MapEditor(int p1, int p2)
         {
             InitializeComponent();
-
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             playerOne = p1;
             playerTwo = p2;
             anzItems = 0;

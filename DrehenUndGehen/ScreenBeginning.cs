@@ -14,6 +14,8 @@ namespace DrehenUndGehen
         public ScreenBeginning()
         {
             InitializeComponent();
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            
         }
 
         private void ScreenBeginning_Load(object sender, EventArgs e)
