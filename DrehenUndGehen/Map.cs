@@ -53,7 +53,7 @@ namespace DrehenUndGehen
 		}
 
 
-		public Map(int Mapsize,int Anzahlitems /*int MapPointSize*/)
+		public Map(int Mapsize,int Anzahlitems,int playerid1, int playerid2 /*int MapPointSize*/)
 		{
 			this.Mapsize = Mapsize;
 			Board = new Mappoint[Mapsize, Mapsize];
@@ -66,8 +66,8 @@ namespace DrehenUndGehen
 			this.usedProps = new Dictionary<String,Bitmap>();
 			//Ein Mappoint zum Verschieben wird beim ersten mal zufällig erstellt
 			ran = new Random();
-            player1 = new Player(4, new Point(0,0));
-            player2 = new Player(1, new Point(Mapsize-1,Mapsize-1));
+            player1 = new Player(playerid1, new Point(0,0));
+            player2 = new Player(playerid2, new Point(Mapsize-1,Mapsize-1));
             this.Randomwert = Anzahlitems;
 		}
 

@@ -179,6 +179,7 @@
             this.rbKingPatrick.TabIndex = 10;
             this.rbKingPatrick.Text = "King Patrick";
             this.rbKingPatrick.UseVisualStyleBackColor = false;
+            this.rbKingPatrick.CheckedChanged += new System.EventHandler(this.rbKingPatrick_CheckedChanged);
             // 
             // rbPopeRoman
             // 

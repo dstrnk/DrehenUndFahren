@@ -103,7 +103,7 @@ namespace DrehenUndGehen
                     temp = makePlayerImageGrey(LordKnight);
                     temp.MakeTransparent(Color.Black);
                     pbChar1.Image = temp;
-                    playerOne = 2;
+                    playerOne = 0;
 
 
 
@@ -115,7 +115,7 @@ namespace DrehenUndGehen
                     temp = makePlayerImageGrey(Marian);
                     temp.MakeTransparent(Color.Black);
                     pbChar2.Image = temp;
-                    playerOne = 5;
+                    playerOne = 1;
 
                 }
                 else if (rbNinjaJustin.Checked == true)
@@ -125,7 +125,7 @@ namespace DrehenUndGehen
                     temp = makePlayerImageGrey(NinjaJustin);
                     temp.MakeTransparent(Color.Black);
                     pbChar3.Image = temp;
-                    playerOne = 6;
+                    playerOne = 2;
 
                 }
                 else if (rbSirDavid.Checked == true)
@@ -135,7 +135,7 @@ namespace DrehenUndGehen
                     temp = makePlayerImageGrey(SirDavid);
                     temp.MakeTransparent(Color.Black);
                     pbChar4.Image = temp;
-                    playerOne = 8;
+                    playerOne = 3;
 
                 }
                 else if (rbKingPatrick.Checked == true)
@@ -145,7 +145,7 @@ namespace DrehenUndGehen
                     temp = makePlayerImageGrey(KingPatrick);
                     temp.MakeTransparent(Color.Black);
                     pbChar5.Image = temp;
-                    playerOne = 3;
+                    playerOne = 4;
 
                 }
                 else if (rbPopeRoman.Checked == true)
@@ -155,7 +155,7 @@ namespace DrehenUndGehen
                     temp = makePlayerImageGrey(PopeRoman);
                     temp.MakeTransparent(Color.Black);
                     pbChar6.Image = temp;
-                    playerOne = 1;
+                    playerOne = 5;
 
 
                 }
@@ -184,7 +184,7 @@ namespace DrehenUndGehen
                     temp = makePlayerImageGrey(LordKnight);
                     temp.MakeTransparent(Color.Black);
                     pbChar1.Image = temp;
-                    playerTwo = 2;
+                    playerTwo = 0;
 
                 }
                 else if (rbMarian.Checked == true)
@@ -194,7 +194,7 @@ namespace DrehenUndGehen
                     temp.MakeTransparent(Color.Black);
                     pbChar2.Image = temp;
              
-                    playerTwo = 5;
+                    playerTwo = 1;
 
                 }
                 else if (rbNinjaJustin.Checked == true)
@@ -204,7 +204,7 @@ namespace DrehenUndGehen
                     temp = makePlayerImageGrey(NinjaJustin);
                     temp.MakeTransparent(Color.Black);
                     pbChar3.Image = temp;
-                    playerTwo = 6;
+                    playerTwo = 2;
                 }
                 else if (rbSirDavid.Checked == true)
                 {
@@ -213,7 +213,7 @@ namespace DrehenUndGehen
                     temp = makePlayerImageGrey(SirDavid);
                     temp.MakeTransparent(Color.Black);
                     pbChar4.Image = temp;
-                    playerTwo = 8;
+                    playerTwo = 3;
                 }
                 else if (rbKingPatrick.Checked == true)
                 {
@@ -222,7 +222,7 @@ namespace DrehenUndGehen
                     temp = makePlayerImageGrey(KingPatrick);
                     temp.MakeTransparent(Color.Black);
                     pbChar5.Image = temp;
-                    playerTwo = 3;
+                    playerTwo = 4;
                 }
                 else if (rbPopeRoman.Checked == true)
                 {
@@ -231,7 +231,7 @@ namespace DrehenUndGehen
                     temp = makePlayerImageGrey(PopeRoman);
                     temp.MakeTransparent(Color.Black);
                     pbChar6.Image = temp;
-                    playerTwo = 1;
+                    playerTwo = 5;
 
 
                 }
@@ -259,6 +259,11 @@ namespace DrehenUndGehen
         }
 
         private void rbLordKnight_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void rbKingPatrick_CheckedChanged(object sender, EventArgs e)
         {
 
         }

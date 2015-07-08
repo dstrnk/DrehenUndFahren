@@ -50,13 +50,11 @@ namespace DrehenUndGehen
 
         public Form1(int size, int p1, int p2, int hmi, String wB)
 		{
-            playerTwoImage = p2;
-            playerOneImage = p1;
             whoBegins = wB;
             
             mapSize = size;
 			InitializeComponent();
-			first = new Map(size,hmi);
+			first = new Map(size,hmi,p1,p2);
 
 			screen = new Gamescreen(first, this);
 			first.fillMap();			
