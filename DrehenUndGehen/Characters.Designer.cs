@@ -247,10 +247,10 @@
             this.Controls.Add(this.pbChar4);
             this.Controls.Add(this.pbChar1);
             this.Name = "Characters";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Choose your warrior to fight .. ";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Characters_FormClosed);
             this.Load += new System.EventHandler(this.Characters_Load);
-            this.Shown += new System.EventHandler(this.Characters_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.pbChar1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbChar4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbChar3)).EndInit();

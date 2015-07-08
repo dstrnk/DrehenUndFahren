@@ -76,7 +76,7 @@
             this.Controls.Add(this.btnInstruction);
             this.Controls.Add(this.btnStartGame);
             this.Name = "ScreenBeginning";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PAN\'s Labyrinth";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ScreenBeginning_FormClosed);
             this.Load += new System.EventHandler(this.ScreenBeginning_Load);
