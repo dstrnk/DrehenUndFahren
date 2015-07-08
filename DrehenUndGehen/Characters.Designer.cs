@@ -248,6 +248,7 @@
             this.Controls.Add(this.pbChar1);
             this.Name = "Characters";
             this.Text = "Choose your warrior to fight .. ";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Characters_FormClosed);
             this.Load += new System.EventHandler(this.Characters_Load);
             this.Shown += new System.EventHandler(this.Characters_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.pbChar1)).EndInit();

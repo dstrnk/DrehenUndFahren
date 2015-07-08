@@ -119,5 +119,10 @@ namespace DrehenUndGehen
             }
         }
 
+        private void MapEditor_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
+
     }
 }

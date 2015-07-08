@@ -173,6 +173,7 @@
             this.Controls.Add(this.pbMap);
             this.Name = "MapEditor";
             this.Text = "MapEditor";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MapEditor_FormClosed);
             this.Load += new System.EventHandler(this.MapEditor_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbMap)).EndInit();
             this.ResumeLayout(false);

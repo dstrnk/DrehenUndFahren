@@ -40,5 +40,10 @@ namespace DrehenUndGehen
 
             figures.Visible = true;
         }
+
+        private void ScreenBeginning_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

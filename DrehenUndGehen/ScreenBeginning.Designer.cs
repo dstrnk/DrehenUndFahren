@@ -78,6 +78,7 @@
             this.Name = "ScreenBeginning";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "PAN\'s Labyrinth";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ScreenBeginning_FormClosed);
             this.Load += new System.EventHandler(this.ScreenBeginning_Load);
             this.ResumeLayout(false);
 

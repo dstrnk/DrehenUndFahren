@@ -230,6 +230,11 @@ namespace DrehenUndGehen
 
         }
 
+        private void Characters_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
+
 
 
 
